@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
+import { handleLoginApi } from "../../services/userServices";
 
 class Login extends Component {
   // ham tao
@@ -13,15 +14,38 @@ class Login extends Component {
       username: "",
       password: "",
       showPassword: false,
+      errMessage: "",
     };
   }
+
   handleInputChange = (e, field) => {
     this.setState({ [field]: e.target.value });
   };
-  handleLogin = () => {
-    console.log(this.state.username, this.state.password);
-    console.log("all state: ", this.state);
+  handleLogin = async () => {
+    this.setState({
+      errMessage: "",
+    });
+    try {
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if (data && data.errCode !== 0) {
+        this.setState({
+          errMessage: data.message,
+        });
+      }
+      if (data && data.errCode === 0) {
+        this.props.useLoginSuccess(data.user);
+      }
+    } catch (e) {
+      if (e.response) {
+        if (e.response.data) {
+          this.setState({
+            errMessage: e.response.data.message,
+          });
+        }
+      }
+    }
   };
+
   togglePasswordVisibility = () => {
     this.setState((prevState) => ({
       showPassword: !prevState.showPassword,
@@ -39,7 +63,6 @@ class Login extends Component {
                   type="text"
                   className="login__input"
                   placeholder="User name / Email"
-                  name="username"
                   value={this.state.username}
                   onChange={(e) => this.handleInputChange(e, "username")}
                 />
@@ -50,7 +73,6 @@ class Login extends Component {
                   type={this.state.showPassword ? "text" : "password"}
                   className="login__input"
                   placeholder="Password"
-                  name="password"
                   value={this.state.password}
                   onChange={(e) => this.handleInputChange(e, "password")}
                 />
@@ -62,19 +84,24 @@ class Login extends Component {
                   {this.state.showPassword ? (
                     <i className="far fa-eye"></i>
                   ) : (
-                    <i class="far fa-eye-slash"></i>
+                    <i className="far fa-eye-slash"></i>
                   )}
                 </span>
               </div>
-              <button
-                className="button login__submit"
-                onClick={() => {
-                  this.handleLogin();
-                }}
-              >
-                <span className="button__text">Log In Now</span>
-                <i className="button__icon fas fa-chevron-right"></i>
-              </button>
+              <div className="col-12" style={{ color: "red" }}>
+                {this.state.errMessage}
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="button login__submit"
+                  onClick={() => {
+                    this.handleLogin();
+                  }}
+                >
+                  Log In Now
+                </button>
+              </div>
               <div>
                 <span>Forgot your password?</span>
               </div>
@@ -109,8 +136,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginFail: () => dispatch(actions.userLoginFail()),
+    useLoginSuccess: (userInfor) => dispatch(actions.useLoginSuccess(userInfor)),
   };
 };
 
