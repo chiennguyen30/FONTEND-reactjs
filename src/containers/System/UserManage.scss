@@ -50,3 +50,35 @@
 .btn-delete:hover {
   background-color: #dd1e1b; /* Màu đỏ nhạt khi hover */
 }
+
+.modal-user-container{
+  .modal-content{
+    .modal-header{
+      button{
+        background-color: transparent !important;
+        color: white;
+        border: none !important;
+        font-size: 40px;
+      }
+    }
+  }
+  .modal-user-body{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    .input-container{
+      display: flex;
+      flex-direction: column;
+      width: 49%;
+    &.max-width-input{
+      width: 100%;
+    }
+      input{
+        
+        height: 30px;
+        outline: none;
+        padding: 0 10px;
+      }
+    }
+  }
+}
