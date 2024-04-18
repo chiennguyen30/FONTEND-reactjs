@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { emitter } from "../../utils/emitter";
+
 class ModalUser extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,8 @@ class ModalUser extends Component {
     };
     this.listenToEmitter();
   }
+
+  // Hàm để lắng nghe sự kiện từ emitter để xóa dữ liệu trong modal
   listenToEmitter() {
     emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
       this.setState({
@@ -26,18 +29,23 @@ class ModalUser extends Component {
       });
     });
   }
+
+  // Hàm được gọi khi component đã được render
   componentDidMount() {}
 
+  // Hàm để đóng modal
   toggle = () => {
     this.props.close();
   };
 
+  // Hàm xử lý khi giá trị của input thay đổi
   handleOnChangeInput = (event, id) => {
     const copyState = { ...this.state };
     copyState[id] = event.target.value;
     this.setState({ ...copyState });
   };
 
+  // Hàm kiểm tra tính hợp lệ của dữ liệu nhập vào
   checkValidateInput = () => {
     let isValid = true;
     let arrInput = ["email", "password", "firstName", "lastName", "address"];
@@ -51,6 +59,7 @@ class ModalUser extends Component {
     return isValid;
   };
 
+  // Hàm xử lý khi click vào nút thêm người dùng
   handleAddNewUser = () => {
     let isValid = this.checkValidateInput();
     if (isValid === true) {
@@ -58,6 +67,7 @@ class ModalUser extends Component {
       this.props.createNewUser(this.state);
     }
   };
+
   render() {
     return (
       <>
