@@ -1,60 +1,76 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { GetAllUsers, createAddNewUser } from "../../services/userServices";
+import { GetAllUsers, createAddNewUser, deleteUser } from "../../services/userServices";
+import { emitter } from "../../utils/emitter";
 import "./UserManage.scss";
 import ModalUser from "./ModalUser";
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrUsers: [],
-      isOpenModalUser: false,
+      arrUsers: [], // Mảng chứa thông tin người dùng
+      isOpenModalUser: false, // Biến để kiểm soát việc hiển thị modal
     };
   }
 
   async componentDidMount() {
-    await this.getAllUserFormReact();
+    await this.getAllUserFormReact(); // Gọi hàm để lấy danh sách người dùng khi component được tạo
   }
+
+  // Hàm để gọi API lấy danh sách người dùng
   getAllUserFormReact = async () => {
     let res = await GetAllUsers("ALL");
     if (res && res.errCode === 0) {
       this.setState({
-        arrUsers: res.users,
+        arrUsers: res.users, // Cập nhật state với danh sách người dùng mới lấy được từ API
       });
     }
   };
+
+  // Hàm xử lý khi click vào nút thêm người dùng
   handleAddNewUser = () => {
     this.setState({
-      isOpenModalUser: true,
+      isOpenModalUser: true, // Mở modal để thêm người dùng mới
     });
   };
 
+  // Hàm để toggle hiển thị modal
   toggleUserModal = () => {
     this.setState({
-      isOpenModalUser: !this.state.isOpenModalUser,
+      isOpenModalUser: !this.state.isOpenModalUser, // Đảo ngược giá trị của biến để hiển thị hoặc ẩn modal
     });
   };
 
+  // Hàm để tạo mới người dùng
   createNewUser = async (data) => {
-    console.log(data);
     try {
-      let res = await createAddNewUser(data);
+      let res = await createAddNewUser(data); // Gọi API để tạo mới người dùng
+      // neu khac res # 0
       if (res && res.errCode !== 0) {
-        alert(res.errMessage);
+        alert(res.errMessage); // Hiển thị cảnh báo nếu có lỗi khi tạo mới người dùng
       } else {
-        await this.getAllUserFormReact();
+        await this.getAllUserFormReact(); // Lấy danh sách người dùng mới sau khi tạo mới thành công
         this.toggleUserModal(); // Đóng modal sau khi thêm người dùng thành công
-        // Xóa giá trị của các trường trong form
-        this.setState({
-          userData: {},
-        });
+        emitter.emit("EVENT_CLEAR_MODAL_DATA");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+  handleDeleteUser = async (user) => {
+    console.log(user);
+    try {
+      let res = await deleteUser(user.id);
+      if (res && res.errCode === 0) {
+        await this.getAllUserFormReact(); // Lấy danh sách người dùng mới sau khi xóa thành công
+      } else {
+        alert("User deleted failed!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   render() {
     return (
       <div className="users-container">
@@ -91,7 +107,7 @@ class UserManage extends Component {
                       <button className="btn-edit">
                         <i className="fas fa-pencil-alt"></i>
                       </button>
-                      <button className="btn-delete">
+                      <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
                         <i className="fas fa-trash"></i>
                       </button>
                     </td>
