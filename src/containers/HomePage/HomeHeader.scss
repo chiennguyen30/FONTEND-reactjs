@@ -1,21 +1,23 @@
+
 .home-header-container{
   width: 100%;
   height: 78px;
-  border: 2px solid red;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   .home-header-content{
     width: 100%;
     height: 100%;
     display: flex;
     .left-content{
-      
       width: 25%;
-      border: 1px solid green;
       position: relative;
       display: flex;
       .header-logo{
         width: 100%;
         background:url(../../assets//images/ef33fc54534d4ca7444b21d7ea4b748c.png) center  no-repeat ;
         background-size: 60%;
+        
         cursor: pointer;
 
       }
@@ -31,19 +33,125 @@
     }
     .center-content{
       width: 50%;
-      border: 1px solid rgb(202, 219, 20);
       display: flex;
       align-items: center;
       justify-content: space-around;
+      .child-content{
+        :hover{
+          cursor: pointer;
+        }
+      }
       
     }
     .right-content{
       width: 25%;
-      border: 1px solid rgb(245, 9, 214);
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      :hover{
+        
+        color: #888;
+      }
+     
+      .support{
+        padding-right: 40px;
+        display: flex;
+        align-items: center;
+        i{
+          margin-right: 5px;
+        }
+      }
+      .language-divider {
+        display: inline-block;
+        margin: 0 5px; /* Điều chỉnh khoảng cách giữa các phần tử */
+        color: #888; /* Màu của gạch chia */
+      }
+      .language-vn{
+
+        &.active{
+          color: orange
+        }
+      }
+      
+      .language-en{
+
+        &.active{
+          color: blueviolet
+        }  
+      }
+
     }
   }
-  
+}
+
+.home-header-banner{
+  height: 450px;
+  background-image: url(../../assets/images/bannerMain.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  .home-header-backround-linear{
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 60%, rgba(152, 149, 149, 0.8));
+    height: 100%;
+    .content-up{
+      height: 50%;
+      padding-top: 1.5em;
+      color: darkorange;
+      
+      .title-1{
+        margin: 15px 0;
+      }
+      .text-introduce{
+        text-align: center;
+        font-size: 40px;
+        text-shadow: 1px 1px 1px #333;
+        
+    
+      }
+      .search{
+        margin: 20px auto;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 30px;
+        background-color: rgb(255, 180, 40);
+        i{
+          margin: 0 5px;
+        }
+        input{
+          height: 30px;
+          width: 400px;
+          background: transparent;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+    
+    .content-down{
+      
+      padding-bottom: 20px;
+      height: 46%;
+      .options{
+        text-align: center;
+        grid-gap: 50px;
+        display: flex;
+        
+        
+        .option-child{
+          width: 100px;
+          
+           :hover{
+            cursor: pointer;
+            color: rgb(255, 255, 255);;
+          }
+        }
+      }
+    }
+  }
+ 
 }

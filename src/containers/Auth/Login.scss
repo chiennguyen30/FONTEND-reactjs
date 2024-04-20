@@ -7,15 +7,16 @@
   font-family: Raleway, sans-serif;
 }
 
-body {
-  // background: linear-gradient(90deg, #C7C5F4, #776BCC);     
-}
+// body {
+//   background: linear-gradient(90deg, #C7C5F4, #776BCC);     
+// }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background: linear-gradient(90deg, #C7C5F4, #776BCC);   
 }
 
 .screen {     
