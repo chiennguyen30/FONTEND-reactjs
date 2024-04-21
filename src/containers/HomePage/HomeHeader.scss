@@ -33,13 +33,16 @@
     }
     .center-content{
       width: 50%;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      .child-content{
-        :hover{
-          cursor: pointer;
-        }
+      gap: 20px;
+
+      .child-content:hover{
+        cursor: pointer;
+        background-color: rgb(157, 216, 28);
+        transition:  0.5s ease-in;
       }
       
     }
@@ -49,10 +52,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      :hover{
-        
-        color: #888;
-      }
      
       .support{
         padding-right: 40px;
@@ -67,18 +66,27 @@
         margin: 0 5px; /* Điều chỉnh khoảng cách giữa các phần tử */
         color: #888; /* Màu của gạch chia */
       }
-      .language-vn{
-
-        &.active{
-          color: orange
-        }
+      .language-vi{
+        opacity: 0.2;
+          &.active{
+            opacity: 1;
+            color: orange
+          }
+         
       }
-      
+      & :hover{
+        opacity: 1;
+      }
       .language-en{
-
-        &.active{
-          color: blueviolet
-        }  
+          opacity: 0.2;
+          &.active{
+            opacity: 1;
+            color: red
+          }  
+          
+      }
+      & :hover{
+        opacity: 1;
       }
 
     }
@@ -143,7 +151,7 @@
         
         
         .option-child{
-          width: 100px;
+          width: 80px;
           
            :hover{
             cursor: pointer;

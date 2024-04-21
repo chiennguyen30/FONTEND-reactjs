@@ -8,10 +8,17 @@ import logoTinhThan from "../../assets/images/161403-iconsuc-khoe-tinh-than.png"
 import logoTuXa from "../../assets/images/161817-iconkham-tu-xa.png";
 import logoYhoc from "../../assets/images/161340-iconxet-nghiem-y-hoc.png";
 import logoNhaKhoa from "../../assets/images/161410-iconkham-nha-khoa.png";
-
+import { LANGUAGES } from "../../utils";
+import { changeLanguageApp } from "../../store/actions/";
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    //fire redux event : actions
+    this.props.changeLanguageAppRedux(language);
+  };
+
   render() {
-    console.log(this.props);
+    let language = this.props.language;
+    console.log("check :", language);
     return (
       <>
         <div className="home-header-container">
@@ -44,7 +51,6 @@ class HomeHeader extends Component {
               <div className="child-content">
                 <div>
                   <b>
-                    {" "}
                     <FormattedMessage id="home-header.doctor" />
                   </b>
                 </div>
@@ -68,9 +74,13 @@ class HomeHeader extends Component {
                 <i className="fas fa-question-circle"></i>
                 <FormattedMessage id="home-header.support" />
               </div>
-              <div className="language-vn">VN</div>
-              <span class="language-divider">|</span>
-              <div className="language-en">EN</div>
+              <div className={language === LANGUAGES.VI ? "language-vi active" : "language-vi"}>
+                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
+              </div>
+              <span className="language-divider">|</span>
+              <div className={language === LANGUAGES.EN ? "language-en active" : "language-en"}>
+                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
+              </div>
             </div>
           </div>
         </div>
@@ -78,7 +88,6 @@ class HomeHeader extends Component {
           <div className="home-header-backround-linear">
             <div className="content-up">
               <div className="title-1 text-introduce">
-                {" "}
                 <FormattedMessage id="banner.MEDICAL-FOUNDATION" />
               </div>
               <div className=" text-introduce">
@@ -163,12 +172,14 @@ class HomeHeader extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    lang: state.app.language,
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
