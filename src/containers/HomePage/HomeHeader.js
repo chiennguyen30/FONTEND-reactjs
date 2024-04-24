@@ -95,7 +95,7 @@ class HomeHeader extends Component {
               </div>
               <div className="search">
                 <i className="fas fa-search"></i>
-                <input type="text" placeholder="Search " />
+                <input type="text" placeholder="Tìm kiếm ...  " />
               </div>
             </div>
             <div className="content-down d-flex align-items-end justify-content-center">

@@ -1,54 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
-import "./Specialty.scss";
+import "./HandBook.scss";
 
-class Specialty extends Component {
+class HandBook extends Component {
   render() {
     const { settings } = this.props;
     return (
       <>
         <div>
-          <div className="section-share section-specialty">
+          <div className="section-share section-container-hand-book">
             <div className="section-container">
               <div className="section-header">
-                <h2>Chuyên khoa</h2>
+                <h2>Cẩm nang</h2>
                 <button>Xem thêm</button>
               </div>
               <Slider {...settings}>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div style={{ textAlign: "center" }}>test</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
                   <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
+                  <div>test</div>
                 </div>
                 <div className="img-customize">
-                  <div className="bg-img section-specialty"></div>
+                  <div className="bg-img section-img-hand-book"></div>
+                </div>
+                <div className="img-customize">
+                  <div className="bg-img section-img-hand-book"></div>
                 </div>
               </Slider>
             </div>
@@ -69,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(HandBook);

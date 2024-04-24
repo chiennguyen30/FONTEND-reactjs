@@ -2,7 +2,7 @@
 .home-header-container{
   width: 100%;
   height: 78px;
-  background-color: white;
+  background-color: #EDFFFA;
   border-radius: 0 0  20px 20px; 
   position: sticky;
   top: 0;
@@ -17,7 +17,7 @@
       display: flex;
       .header-logo{
         width: 100%;
-        background:url(../../assets//images/ef33fc54534d4ca7444b21d7ea4b748c.png) center  no-repeat ;
+        background:url(../../assets//images/ef33fc54534d4ca7444b21d7ea4b748c.png) center   center no-repeat ;
         background-size: 60%;
         
         cursor: pointer;
@@ -40,10 +40,10 @@
       align-items: center;
       justify-content: space-around;
       gap: 20px;
-
+      
       .child-content:hover{
         cursor: pointer;
-        background-color: rgb(157, 216, 28);
+        background-color: rgb(240, 201, 41);
         transition:  0.5s ease-in;
       }
       
@@ -103,7 +103,6 @@
   display: flex;
   flex-direction: column;
   .home-header-backround-linear{
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 60%, rgba(152, 149, 149, 0.8));
     height: 100%;
     .content-up{
       height: 50%;
@@ -144,21 +143,18 @@
     }
     
     .content-down{
-      
-      padding-bottom: 20px;
+ 
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 255));
       height: 46%;
       .options{
         text-align: center;
         grid-gap: 50px;
         display: flex;
-        
-        
         .option-child{
           width: 80px;
-          
-           :hover{
+          padding:  5px;
+           &:hover{
             cursor: pointer;
-            color: rgb(255, 255, 255);;
           }
         }
       }
