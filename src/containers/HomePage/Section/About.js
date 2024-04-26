@@ -8,7 +8,6 @@ import icon5 from "../../../assets/images/media/infonet.png";
 import icon6 from "../../../assets/images/media/vnexpress.png";
 import icon7 from "../../../assets/images/media/vtv1.png";
 import icon8 from "../../../assets/images/media/vtv1.png";
-import "./About.scss";
 
 class About extends Component {
   render() {
