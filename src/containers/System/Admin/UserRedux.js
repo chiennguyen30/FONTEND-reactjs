@@ -1,35 +1,76 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { getAllCodeService } from "../../../services/userServices";
 import { LANGUAGES } from "../../../utils";
 import * as actions from "../../../store/actions";
+import "./UserRedux.scss";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+
 class UserRedux extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // Khởi tạo state ban đầu cho genderArr, positionArr, roleArr
       genderArr: [],
+      positionArr: [],
+      roleArr: [],
+      previewImage: "",
+      isOpen: false,
     };
   }
 
   async componentDidMount() {
-    this.props.getGenderStart();
+    // Gọi các hàm action để lấy danh sách genders, positions, roles từ Redux store
+    this.props.getGenderList();
+    this.props.getPositionList();
+    this.props.getRoleList();
   }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
+    // Kiểm tra nếu danh sách genders từ Redux store đã thay đổi, cập nhật state
     if (prevProps.genderRedux !== this.props.genderRedux) {
       this.setState({ genderArr: this.props.genderRedux });
     }
+
+    // Kiểm tra nếu danh sách positions từ Redux store đã thay đổi, cập nhật state
+    if (prevProps.positionRedux !== this.props.positionRedux) {
+      this.setState({ positionArr: this.props.positionRedux });
+    }
+
+    // Kiểm tra nếu danh sách roles từ Redux store đã thay đổi, cập nhật state
+    if (prevProps.roleRedux !== this.props.roleRedux) {
+      this.setState({ roleArr: this.props.roleRedux });
+    }
   }
+  handleOnchangeImg = (e) => {
+    let data = e.target.files;
+    let file = data[0];
+    if (file) {
+      let objectUrl = URL.createObjectURL(file);
+      this.setState({
+        previewImage: objectUrl,
+      });
+    }
+  };
+
+  openPreviewImg = () => {
+    // if (!this.state.previewImage) return;
+    this.setState({ isOpen: true });
+  };
 
   render() {
-    let genders = this.state.genderArr;
-    let language = this.props.language;
+    // Lấy thông tin từ state và props để sử dụng trong render
+    const { genderArr, positionArr, roleArr } = this.state;
+    const { language } = this.props;
+
     return (
       <div className="user-redux-container">
         <div className="title">Learn react-redux chien IT</div>
         <div className="user-redux-body">
           <div className="container">
             <div className="row">
+              {/* Form elements */}
               <div className="col-12 my-3">
                 <FormattedMessage id="manage-user.add" />
               </div>
@@ -74,15 +115,13 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.gender" />
                 </label>
                 <select className="form-control">
-                  {genders &&
-                    genders.length > 0 &&
-                    genders.map((item, index) => {
-                      return (
-                        <option key={index}>
-                          {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
-                        </option>
-                      );
-                    })}
+                  {/* Render danh sách genders */}
+                  {genderArr &&
+                    genderArr.map((item, index) => (
+                      <option key={index}>
+                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
+                      </option>
+                    ))}
                 </select>
               </div>
               <div className="col-3">
@@ -90,8 +129,13 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.position" />
                 </label>
                 <select className="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
+                  {/* Render danh sách positions */}
+                  {positionArr &&
+                    positionArr.map((item, index) => (
+                      <option key={index}>
+                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
+                      </option>
+                    ))}
                 </select>
               </div>
               <div className="col-3">
@@ -99,40 +143,76 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.role" />
                 </label>
                 <select className="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
+                  {/* Render danh sách roles */}
+                  {roleArr &&
+                    roleArr.map((item, index) => (
+                      <option key={index}>
+                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
+                      </option>
+                    ))}
                 </select>
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.image" />
                 </label>
-                <input type="text" className="form-control" name="image" />
+                <div className="preview-img-container">
+                  <input
+                    type="file"
+                    id="previewImg"
+                    hidden
+                    onChange={(e) => this.handleOnchangeImg(e)}
+                  />
+                  <label htmlFor="previewImg" className="label-upload">
+                    up file <i className="fas fa-upload"></i>
+                  </label>
+                  {/* Kiểm tra nếu previewImage có giá trị thì hiển thị hình ảnh, ngược lại ẩn đi */}
+                  {this.state.previewImage && (
+                    <div
+                      className="preview-img"
+                      style={{
+                        background: `url(${this.state.previewImage}) center center/cover no-repeat`,
+                        backgroundSize: "contain",
+                      }}
+                      onClick={() => this.openPreviewImg()}
+                    ></div>
+                  )}
+                </div>
               </div>
               <div className="col-12">
                 <button className="btn btn-primary my-3">
                   <FormattedMessage id="manage-user.save" />
                 </button>
               </div>
+              {/* Other form elements */}
             </div>
           </div>
         </div>
+        {this.state.isOpen === true && (
+          <Lightbox
+            mainSrc={this.state.previewImage}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+          />
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    language: state.app.language,
-    genderRedux: state.admin.genders,
-  };
-};
+// Lấy dữ liệu từ Redux store và map vào props của component
+const mapStateToProps = (state) => ({
+  language: state.app.language,
+  genderRedux: state.admin.genders,
+  roleRedux: state.admin.roles,
+  positionRedux: state.admin.positions,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getGenderStart: () => dispatch(actions.fetchGenderStart()),
-  };
-};
+// Dispatch các action để lấy dữ liệu từ Redux store và map vào props của component
+const mapDispatchToProps = (dispatch) => ({
+  getGenderList: () => dispatch(actions.fetchGenderStart()),
+  getPositionList: () => dispatch(actions.fetchPositionStart()),
+  getRoleList: () => dispatch(actions.fetchRoleStart()),
+});
 
+// Kết nối component với Redux store
 export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
