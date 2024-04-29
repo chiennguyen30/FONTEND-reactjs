@@ -11,12 +11,23 @@ class UserRedux extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Khởi tạo state ban đầu cho genderArr, positionArr, roleArr
+      // Khởi tạo state ban đầu
       genderArr: [],
       positionArr: [],
       roleArr: [],
       previewImage: "",
       isOpen: false,
+
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      address: "",
+      gender: "",
+      position: "",
+      role: "",
+      avatar: "",
     };
   }
 
@@ -30,17 +41,29 @@ class UserRedux extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // Kiểm tra nếu danh sách genders từ Redux store đã thay đổi, cập nhật state
     if (prevProps.genderRedux !== this.props.genderRedux) {
-      this.setState({ genderArr: this.props.genderRedux });
+      let arrGenders = this.props.genderRedux;
+      this.setState({
+        genderArr: this.props.genderRedux,
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
+      });
     }
 
     // Kiểm tra nếu danh sách positions từ Redux store đã thay đổi, cập nhật state
     if (prevProps.positionRedux !== this.props.positionRedux) {
-      this.setState({ positionArr: this.props.positionRedux });
+      let arrPositions = this.props.positionRedux;
+      this.setState({
+        positionArr: this.props.positionRedux,
+        position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
+      });
     }
 
     // Kiểm tra nếu danh sách roles từ Redux store đã thay đổi, cập nhật state
     if (prevProps.roleRedux !== this.props.roleRedux) {
-      this.setState({ roleArr: this.props.roleRedux });
+      let arrRoles = this.props.roleRedux;
+      this.setState({
+        roleArr: this.props.roleRedux,
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+      });
     }
   }
   handleOnchangeImg = (e) => {
@@ -50,20 +73,105 @@ class UserRedux extends Component {
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImage: objectUrl,
+        avatar: file,
       });
     }
   };
 
   openPreviewImg = () => {
-    // if (!this.state.previewImage) return;
     this.setState({ isOpen: true });
+  };
+  onChangeInput = (e, id) => {
+    let copyState = { ...this.state };
+    copyState[id] = e.target.value;
+    this.setState({
+      ...copyState,
+    });
+  };
+  validateForm = () => {
+    let isValid = true;
+    let arrInput = ["email", "password", "firstName", "lastName", "phoneNumber", "address"];
+
+    // Cụm từ thông dụng cho email, mật khẩu (ít nhất 6 ký tự) và số điện thoại (chính xác 10 chữ số)
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
+    const phoneNumberRegex = /^\d{10}$/;
+
+    for (let i = 0; i < arrInput.length; i++) {
+      if (!this.state[arrInput[i]]) {
+        isValid = false;
+        alert("Missing parameter: " + arrInput[i]);
+        break;
+      }
+
+      // Kiểm tra xem người dùng nhập có nhập đúng trường email hay chưa
+      if (arrInput[i] === "email" && !emailRegex.test(this.state.email)) {
+        isValid = false;
+        alert("Invalid email format");
+        break;
+      }
+      // Kiểm tra xem người dùng nhập có nhập đủ số ký tự của mk hay chưa
+      if (arrInput[i] === "password" && !passwordRegex.test(this.state.password)) {
+        isValid = false;
+        alert("Password must be at least 6 characters long and uppercase letters");
+        break;
+      }
+
+      if (arrInput[i] === "phoneNumber" && !phoneNumberRegex.test(this.state.phoneNumber)) {
+        isValid = false;
+        alert("Phone number must be exactly 10 digits");
+        break;
+      }
+    }
+    return isValid;
+  };
+
+  handleSaveUser = () => {
+    let isValid = this.validateForm();
+    if (isValid === false) return;
+
+    // fire redux action
+    this.props.createNewUser({
+      email: this.state.email,
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      phoneNumber: this.state.phoneNumber,
+      gender: this.state.gender,
+      roleId: this.state.role,
+      positionId: this.state.position,
+    });
+    alert("User created successfully!");
+    this.setState({
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      phoneNumber: "",
+      gender: "",
+      role: "", // Đặt lại các giá trị khác nếu cần
+      position: "",
+    });
   };
 
   render() {
     // Lấy thông tin từ state và props để sử dụng trong render
     const { genderArr, positionArr, roleArr } = this.state;
     const { language } = this.props;
-
+    let {
+      email,
+      password,
+      firstName,
+      lastName,
+      phoneNumber,
+      address,
+      avatar,
+      gender,
+      position,
+      role,
+    } = this.state;
     return (
       <div className="user-redux-container">
         <div className="title">Learn react-redux chien IT</div>
@@ -78,47 +186,94 @@ class UserRedux extends Component {
                 <label>
                   <FormattedMessage id="manage-user.email" />
                 </label>
-                <input type="email" className="form-control" name="email" />
+                <input
+                  type="email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "email");
+                  }}
+                />
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.password" />
                 </label>
-                <input type="password" className="form-control" name="password" />
+                <input
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "password");
+                  }}
+                />
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.first-name" />
                 </label>
-                <input type="text" className="form-control" name="firstName" />
+                <input
+                  type="text"
+                  className="form-control"
+                  value={firstName}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "firstName");
+                  }}
+                />
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.last-name" />
                 </label>
-                <input type="text" className="form-control" name="lastName" />
+                <input
+                  type="text"
+                  className="form-control"
+                  value={lastName}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "lastName");
+                  }}
+                />
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.phone-number" />
                 </label>
-                <input type="text" className="form-control" name="phoneNumber" />
+                <input
+                  type="text"
+                  className="form-control"
+                  value={phoneNumber}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "phoneNumber");
+                  }}
+                />
               </div>
               <div className="col-9">
                 <label>
                   <FormattedMessage id="manage-user.address" />
                 </label>
-                <input type="text" className="form-control" name="address" />
+                <input
+                  type="text"
+                  className="form-control"
+                  value={address}
+                  onChange={(e) => {
+                    this.onChangeInput(e, "address");
+                  }}
+                />
               </div>
               <div className="col-3">
                 <label>
                   <FormattedMessage id="manage-user.gender" />
                 </label>
-                <select className="form-control">
+                <select
+                  className="form-control"
+                  onChange={(e) => {
+                    this.onChangeInput(e, "gender");
+                  }}
+                >
                   {/* Render danh sách genders */}
                   {genderArr &&
                     genderArr.map((item, index) => (
-                      <option key={index}>
+                      <option key={index} value={item.key}>
                         {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
                       </option>
                     ))}
@@ -128,11 +283,16 @@ class UserRedux extends Component {
                 <label>
                   <FormattedMessage id="manage-user.position" />
                 </label>
-                <select className="form-control">
+                <select
+                  className="form-control"
+                  onChange={(e) => {
+                    this.onChangeInput(e, "position");
+                  }}
+                >
                   {/* Render danh sách positions */}
                   {positionArr &&
                     positionArr.map((item, index) => (
-                      <option key={index}>
+                      <option key={index} value={item.key}>
                         {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
                       </option>
                     ))}
@@ -142,11 +302,16 @@ class UserRedux extends Component {
                 <label>
                   <FormattedMessage id="manage-user.role" />
                 </label>
-                <select className="form-control">
+                <select
+                  className="form-control"
+                  onChange={(e) => {
+                    this.onChangeInput(e, "role");
+                  }}
+                >
                   {/* Render danh sách roles */}
                   {roleArr &&
                     roleArr.map((item, index) => (
-                      <option key={index}>
+                      <option key={index} value={item.key}>
                         {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
                       </option>
                     ))}
@@ -180,7 +345,7 @@ class UserRedux extends Component {
                 </div>
               </div>
               <div className="col-12">
-                <button className="btn btn-primary my-3">
+                <button className="btn btn-primary my-3" onClick={() => this.handleSaveUser()}>
                   <FormattedMessage id="manage-user.save" />
                 </button>
               </div>
@@ -212,6 +377,7 @@ const mapDispatchToProps = (dispatch) => ({
   getGenderList: () => dispatch(actions.fetchGenderStart()),
   getPositionList: () => dispatch(actions.fetchPositionStart()),
   getRoleList: () => dispatch(actions.fetchRoleStart()),
+  createNewUser: (data) => dispatch(actions.createNewUser(data)),
 });
 
 // Kết nối component với Redux store
