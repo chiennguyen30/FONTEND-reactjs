@@ -6,7 +6,7 @@ import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-
+import TableManageUser from "./TableManageUser";
 class UserRedux extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +63,20 @@ class UserRedux extends Component {
       this.setState({
         roleArr: this.props.roleRedux,
         role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+      });
+    }
+    if (prevProps.listUsers !== this.props.listUsers) {
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        gender: "",
+        position: "",
+        role: "",
+        avatar: "",
       });
     }
   }
@@ -141,18 +155,6 @@ class UserRedux extends Component {
       gender: this.state.gender,
       roleId: this.state.role,
       positionId: this.state.position,
-    });
-    alert("User created successfully!");
-    this.setState({
-      email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      phoneNumber: "",
-      gender: "",
-      role: "", // Đặt lại các giá trị khác nếu cần
-      position: "",
     });
   };
 
@@ -349,10 +351,13 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.save" />
                 </button>
               </div>
-              {/* Other form elements */}
+              <div className="col-12 mb-5">
+                <TableManageUser />
+              </div>
             </div>
           </div>
         </div>
+
         {this.state.isOpen === true && (
           <Lightbox
             mainSrc={this.state.previewImage}
@@ -370,6 +375,7 @@ const mapStateToProps = (state) => ({
   genderRedux: state.admin.genders,
   roleRedux: state.admin.roles,
   positionRedux: state.admin.positions,
+  listUsers: state.admin.users,
 });
 
 // Dispatch các action để lấy dữ liệu từ Redux store và map vào props của component
@@ -378,6 +384,7 @@ const mapDispatchToProps = (dispatch) => ({
   getPositionList: () => dispatch(actions.fetchPositionStart()),
   getRoleList: () => dispatch(actions.fetchRoleStart()),
   createNewUser: (data) => dispatch(actions.createNewUser(data)),
+  fetchAllUserRedux: () => dispatch(actions.fetchAllUserStart()),
 });
 
 // Kết nối component với Redux store
