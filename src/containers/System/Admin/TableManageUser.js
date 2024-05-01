@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import * as actions from "../../../store/actions";
 import { connect } from "react-redux";
-import {
-  GetAllUsers,
-  createAddNewUser,
-  deleteUser,
-  UpdateUser,
-} from "../../../services/userServices";
 import { emitter } from "../../../utils/emitter";
 import "./TableManageUser.scss";
 class TableManageUser extends Component {
@@ -32,6 +26,10 @@ class TableManageUser extends Component {
   handleDeleteUser = async (user) => {
     this.props.deleteAUserRedux(user.id);
   };
+
+  handleEditUser = async (user) => {
+    this.props.handleEditUserFormParent(user);
+  };
   render() {
     let dataUsersRedux = this.state.usersRedux;
     return (
@@ -55,7 +53,7 @@ class TableManageUser extends Component {
                     <td>{item.lastName}</td>
                     <td>{item.address}</td>
                     <td>
-                      <button className="btn-edit">
+                      <button className="btn-edit" onClick={() => this.handleEditUser(item)}>
                         <i className="fas fa-pencil-alt"></i>
                       </button>
                       <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>

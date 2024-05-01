@@ -50,7 +50,8 @@
         }
     },
     "manage-user": {
-        "add" : "Add new user",
+        "add-user" : "Add new user",
+        "edit-user" : "Change user information",
         "email" : "Email",
         "password" : "password",
         "first-name" : "First name",
@@ -61,7 +62,8 @@
         "gender":"Gender",
         "position":"Position",
         "image":"Avatar",
-        "save": "lưu"
+        "save": "Save",
+        "edit": "Save changes"
 
     }
 }

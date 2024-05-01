@@ -4,6 +4,7 @@ import {
   createAddNewUser,
   GetAllUsers,
   deleteUser,
+  UpdateUser,
 } from "../../services/userServices";
 import { toast } from "react-toastify";
 // action get gender
@@ -156,4 +157,30 @@ export const deleteUserSuccess = () => ({
 });
 export const deleteUserFailed = () => ({
   type: actionTypes.FETCH_DELETE_FAILED,
+});
+
+export const editAUser = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await UpdateUser(data);
+      console.log("check res", res);
+      if (res && res.errCode === 0) {
+        toast.success("Update a user successfully");
+        dispatch(editUserSuccess());
+        dispatch(fetchAllUserStart());
+      } else {
+        toast.error("Update a user failed");
+        dispatch(editUserFailed());
+      }
+    } catch (error) {
+      dispatch(editUserFailed());
+      toast.error("Update a user failed");
+    }
+  };
+};
+export const editUserSuccess = () => ({
+  type: actionTypes.EDIT_USER_SUCCESS,
+});
+export const editUserFailed = () => ({
+  type: actionTypes.EDIT_USER_FAILED,
 });
