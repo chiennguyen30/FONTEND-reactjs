@@ -23,4 +23,16 @@ const deleteUser = (id) => {
 const getAllCodeService = (Type) => {
   return axios.get(`/api/allcode?type=${Type}`);
 };
-export { handleLoginApi, GetAllUsers, createAddNewUser, deleteUser, UpdateUser, getAllCodeService };
+
+const getTopDoctorHome = (limit) => {
+  return axios.get(`/api/top-doctor-home?limit=${limit}`);
+};
+export {
+  handleLoginApi,
+  GetAllUsers,
+  createAddNewUser,
+  deleteUser,
+  UpdateUser,
+  getAllCodeService,
+  getTopDoctorHome,
+};

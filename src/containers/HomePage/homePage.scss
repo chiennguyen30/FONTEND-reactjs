@@ -69,6 +69,7 @@
   }
    .img-customize{
       height: 300px;
+      display: flex;
       .bg-img{
         height: 70%;
         width: 80%;
@@ -83,7 +84,7 @@
           background: url('../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg')center center no-repeat;
         }
         &.section-specialty-OutstandingDoctor{
-          background: url('../../assets/images/doctor/085824-bs-nhan.png')center center/cover no-repeat;
+          // background: url('../../assets/images/doctor/085824-bs-nhan.png')center center/cover no-repeat;
           
           width: 250px;
           height: 250px;
