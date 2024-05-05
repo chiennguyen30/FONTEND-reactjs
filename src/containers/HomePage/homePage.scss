@@ -26,6 +26,10 @@
 .slick-next::before{
   color:blue
 }
+// ẩn nút slick 
+.slick-disabled{
+  display: none !important;
+}
 
 .section-share{
   &.section-specialty{
@@ -37,6 +41,7 @@
     // margin: 20px ;
     .section-about-header{
       text-align: center;
+      margin-top: 50px;
       h2{
         padding: 20px;
         font-weight: 600;
@@ -100,7 +105,7 @@
 
 
 .section-share{
-  height: 330px;
+  height: 450px;
   .section-container{
     margin: 70px 50px;
     text-align: center;
@@ -137,6 +142,10 @@
       padding: 50px 25px;
     }
   }
+}
+
+.section-Outstanding-doctor{
+  background: url('../../assets/images/bg-doctor.png');
 }
 
 

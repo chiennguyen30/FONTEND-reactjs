@@ -66,5 +66,14 @@
         "edit": "Lưu thay đổi"
 
 
+    },
+    "home-page":{
+        "Outstanding-doctor" : "Bác sĩ nổi bật",
+        "More-infor" : "Xem thêm",
+        "Specialist" : "Chuyên khoa",
+        "Health-facilities": "Cơ sở y tế",
+        "Handbook": "Cẩm nang",
+        "What-does-the-media-talk-about?" : "Truyền thông nói gì về Nguyễn Văn Chiến IT"
+
     }
 }

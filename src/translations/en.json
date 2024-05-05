@@ -65,5 +65,13 @@
         "save": "Save",
         "edit": "Save changes"
 
+    },
+    "home-page":{
+        "Outstanding-doctor" : "Outstanding doctor",
+        "More-infor" : "More infor",
+        "Specialist" : "Specialist",
+        "Health-facilities": "Health facilities",
+        "Handbook": "Hand book",
+        "What-does-the-media-talk-about?" : "What does the media talk about?"
     }
 }

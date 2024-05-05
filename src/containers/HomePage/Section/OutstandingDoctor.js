@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import { FormattedMessage } from "react-intl";
 class OutstandingDoctor extends Component {
   constructor() {
     super();
@@ -26,11 +27,15 @@ class OutstandingDoctor extends Component {
     console.log("check doctor: ", arrDoctors);
     return (
       <>
-        <div className="section-share section-outstanding-doctor">
-          <div className="section-container section-bg-outstanding-doctor">
+        <div className="section-share section-Outstanding-doctor">
+          <div className="section-container section-bg-Outstanding-doctor">
             <div className="section-header">
-              <h2>Bác sĩ nổi bật</h2>
-              <button>Xem thêm</button>
+              <h2>
+                <FormattedMessage id="home-page.Outstanding-doctor" />
+              </h2>
+              <button>
+                <FormattedMessage id="home-page.More-infor" />
+              </button>
             </div>
             <Slider {...settings}>
               {arrDoctors &&
@@ -55,7 +60,7 @@ class OutstandingDoctor extends Component {
                           backgroundSize: "contain",
                         }}
                       ></div>
-                      <div>
+                      <div style={{ marginTop: 20, fontWeight: 600, fontSize: 16 }}>
                         <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                         <div>Tim mạch</div>
                       </div>

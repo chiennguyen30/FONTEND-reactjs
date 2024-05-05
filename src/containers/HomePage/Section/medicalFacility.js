@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
+import { FormattedMessage } from "react-intl";
 class MedicalFacility extends Component {
   render() {
     const { settings } = this.props;
@@ -9,8 +10,12 @@ class MedicalFacility extends Component {
         <div className="section-share section-medical-facility">
           <div className="section-container">
             <div className="section-header">
-              <h2>Cơ sở y tế</h2>
-              <button>Xem thêm</button>
+              <h2>
+                <FormattedMessage id="home-page.Health-facilities" />
+              </h2>
+              <button>
+                <FormattedMessage id="home-page.More-infor" />
+              </button>
             </div>
             <Slider {...settings}>
               <div className="img-customize">

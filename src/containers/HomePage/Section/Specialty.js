@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import "./Specialty.scss";
-
+import { FormattedMessage } from "react-intl";
 class Specialty extends Component {
   render() {
     const { settings } = this.props;
@@ -12,8 +12,12 @@ class Specialty extends Component {
           <div className="section-share section-specialty">
             <div className="section-container">
               <div className="section-header">
-                <h2>Chuyên khoa</h2>
-                <button>Xem thêm</button>
+                <h2>
+                  <FormattedMessage id="home-page.Specialist" />
+                </h2>
+                <button>
+                  <FormattedMessage id="home-page.More-infor" />
+                </button>
               </div>
               <Slider {...settings}>
                 <div className="img-customize">

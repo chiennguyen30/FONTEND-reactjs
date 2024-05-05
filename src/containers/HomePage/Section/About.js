@@ -8,6 +8,7 @@ import icon5 from "../../../assets/images/media/infonet.png";
 import icon6 from "../../../assets/images/media/vnexpress.png";
 import icon7 from "../../../assets/images/media/vtv1.png";
 import icon8 from "../../../assets/images/media/vtv1.png";
+import { FormattedMessage } from "react-intl";
 
 class About extends Component {
   render() {
@@ -16,7 +17,9 @@ class About extends Component {
         <div>
           <div className="section-share section-container-about">
             <div className="section-about-header">
-              <h2>Truyền thông nói gì về Nguyễn Văn Chiến IT</h2>
+              <h2>
+                <FormattedMessage id="home-page.What-does-the-media-talk-about?" />
+              </h2>
             </div>
             <div className="section-about-content">
               <div className="content-left">
