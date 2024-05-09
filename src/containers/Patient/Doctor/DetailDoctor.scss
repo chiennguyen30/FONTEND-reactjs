@@ -1,30 +1,47 @@
-.doctor-detail-content{
+.doctor-detail-content {
   height: 500px;
-  border: 1px solid red;
-  margin: 0 100px;
-  .intro-doctor{
+ 
+  .intro-doctor {
     display: flex;
-    border:1px solid gray;
-    .content-left{
+    padding: 0 100px;
+    .content-left {
       width: 20%;
       width: 120px;
       height: 120px;
       border-radius: 50%;
       margin: 10px 20px;
     }
-    .content-right{
+    .content-right {
       width: 50%;
       display: flex;
       flex-direction: column;
       padding-left: 10px;
-      .up{
+      .up {
         font-size: 20px;
         font-weight: 600;
         padding-top: 15px;
       }
-      .down{
+      .down {
         padding-top: 10px;
       }
     }
+  }
+  .detail-infor-doctor {
+    background-color:  #f9f9f9;
+    padding-left: 20px;
+    border-top:1px solid #ddd;
+    padding: 10px 100px;
+    h3 {
+      font-size: 17px;
+    }
+    ul {
+      padding-left: 30px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .coment-doctor{
+    height: 50px;
   }
 }
