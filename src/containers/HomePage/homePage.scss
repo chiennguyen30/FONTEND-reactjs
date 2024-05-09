@@ -1,5 +1,5 @@
- // rest slick slider css
- .slick-prev{
+// rest slick slider css
+.slick-prev {
   border: 1px solid rgb(101, 165, 194) !important;
   border-radius: 10px;
   box-shadow: rgb(201, 236, 240) 2px 2px 5px;
@@ -9,13 +9,11 @@
   border-radius: 8px;
   border-width: 1px;
   border-color: rgb(181, 231, 237);
-  
-} 
-.slick-prev::before{
-  
-  color:blue
 }
-.slick-next{
+.slick-prev::before {
+  color: blue;
+}
+.slick-next {
   border: 1px solid rgb(40, 176, 218) !important;
   box-shadow: rgb(201, 236, 240) 2px 2px 5px;
   width: 40px !important;
@@ -23,46 +21,46 @@
   border-radius: 10px;
   color: blue;
 }
-.slick-next::before{
-  color:blue
+.slick-next::before {
+  color: blue;
 }
-// ẩn nút slick 
-.slick-disabled{
+// ẩn nút slick
+.slick-disabled {
   display: none !important;
 }
 
-.section-share{
-  &.section-specialty{
+.section-share {
+  &.section-specialty {
     background-color: #f5f5f5;
   }
-  &.section-container-about{
-    background:url(../../assets/images/140309-background3.png) center center/cover no-repeat ;
+  &.section-container-about {
+    background: url(../../assets/images/140309-background3.png) center center/cover no-repeat;
     height: 450px !important;
     // margin: 20px ;
-    .section-about-header{
+    .section-about-header {
       text-align: center;
       margin-top: 50px;
-      h2{
+      h2 {
         padding: 20px;
         font-weight: 600;
       }
     }
-    .section-about-content{
+    .section-about-content {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      .content-right{
+      .content-right {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        div{
+        div {
           margin: 10px;
           padding: 5px;
           border-radius: 15px;
           background-color: white;
-          li{
+          li {
             list-style: none;
-            img{
+            img {
               width: 150px;
               height: 50px;
               background-size: cover;
@@ -72,66 +70,69 @@
       }
     }
   }
-   .img-customize{
-      height: 300px;
-      display: flex;
-      .bg-img{
-        height: 70%;
-        width: 80%;
-        // background-size: cover !important;
-        border-radius: 15px;
-        border: 2px solid rgb(176, 176, 176);
-        margin:0  43px;
-        &.section-specialty{
-          background: url('../../assets/images/Specialized/101627-cham-cuu.png') center center/cover no-repeat;
-        }
-        &.section-specialty-medicalFacility{
-          background: url('../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg')center center no-repeat;
-        }
-        &.section-specialty-OutstandingDoctor{
-          // background: url('../../assets/images/doctor/085824-bs-nhan.png')center center/cover no-repeat;
-          
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
-          margin-left: 100px;
-        }
-        &.section-img-hand-book{
-          background: url('../../assets/images/hand-book/120624-lean-startup-marketing-phong-kham.png')center center/cover no-repeat ;
-        }
+  .section-customize {
+    cursor: pointer;
+    height: 300px;
+    display: flex;
+    .bg-img {
+      height: 70%;
+      width: 80%;
+      // background-size: cover !important;
+      border-radius: 15px;
+      border: 2px solid rgb(176, 176, 176);
+      margin: 0 43px;
+      &.section-specialty {
+        background: url("../../assets/images/Specialized/101627-cham-cuu.png") center center/cover
+          no-repeat;
+      }
+      &.section-specialty-medicalFacility {
+        background: url("../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg") center
+          center no-repeat;
+      }
+      &.section-specialty-OutstandingDoctor {
+        // background: url('../../assets/images/doctor/085824-bs-nhan.png')center center/cover no-repeat;
+
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        margin-left: 100px;
+      }
+      &.section-img-hand-book {
+        background: url("../../assets/images/hand-book/120624-lean-startup-marketing-phong-kham.png")
+          center center/cover no-repeat;
       }
     }
+  }
 }
 
-
-.section-share{
+.section-share {
   height: 450px;
-  .section-container{
+  .section-container {
     margin: 70px 50px;
     text-align: center;
-    .section-header{
+    .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 20px;
-      h2{
+      h2 {
         font-weight: 600;
         color: orange;
       }
-      button{
+      button {
         border: none;
         font-size: 20px;
         padding: 10px;
         border-radius: 15px;
-        background-color: #DAF3F6;
-        color: #34929E;
+        background-color: #daf3f6;
+        color: #34929e;
         font-weight: 600;
         border: none;
         outline: none;
         margin-top: 15px;
       }
     }
-    
+
     .img-center {
       border-radius: 15px;
       border: 2px solid rgb(240, 229, 229);
@@ -144,32 +145,30 @@
   }
 }
 
-.section-Outstanding-doctor{
-  background: url('../../assets/images/bg-doctor.png');
+.section-Outstanding-doctor {
+  background: url("../../assets/images/bg-doctor.png");
 }
 
-
 // footer
-.section-container-HomeFooter{
+.section-container-HomeFooter {
   color: white;
   height: 100px;
-  background-color: #64B9E5;
+  background-color: #64b9e5;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  p{
+  p {
     padding-left: 20px;
     font-size: 20px;
     font-weight: 600;
   }
-  .section-footer-icon-social{
+  .section-footer-icon-social {
     margin-right: 20px;
     display: flex;
     flex-direction: row;
 
-    .section-icon-fb{
+    .section-icon-fb {
       margin: 0 20px;
     }
   }
 }
-

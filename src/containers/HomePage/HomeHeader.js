@@ -84,86 +84,88 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
-        <div className="homeheader-banner">
-          <div className="homeheader-backround-linear">
-            <div className="content-up">
-              <div className="title-1 text-introduce">
-                <FormattedMessage id="banner.MEDICAL-FOUNDATION" />
+        {this.props.isShowBanner === true && (
+          <div className="homeheader-banner">
+            <div className="homeheader-backround-linear">
+              <div className="content-up">
+                <div className="title-1 text-introduce">
+                  <FormattedMessage id="banner.MEDICAL-FOUNDATION" />
+                </div>
+                <div className=" text-introduce">
+                  <FormattedMessage id="banner.HEALTH-CARE" />
+                </div>
+                <div className="search">
+                  <i className="fas fa-search"></i>
+                  <input type="text" placeholder="Tìm kiếm ...  " />
+                </div>
               </div>
-              <div className=" text-introduce">
-                <FormattedMessage id="banner.HEALTH-CARE" />
-              </div>
-              <div className="search">
-                <i className="fas fa-search"></i>
-                <input type="text" placeholder="Tìm kiếm ...  " />
-              </div>
-            </div>
-            <div className="content-down d-flex align-items-end justify-content-center">
-              <div className="options ">
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoHotpital} alt="" style={{ width: "50px" }} />
+              <div className="content-down d-flex align-items-end justify-content-center">
+                <div className="options ">
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoHotpital} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.Specialized-examination" />
+                      </b>
+                    </div>
                   </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.Specialized-examination" />
-                    </b>
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoTuXa} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.Telemedicine" />
+                      </b>
+                    </div>
                   </div>
-                </div>
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoTuXa} alt="" style={{ width: "50px" }} />
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoTongQuan} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.General-examination" />
+                      </b>
+                    </div>
                   </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.Telemedicine" />
-                    </b>
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoYhoc} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.Medical-tests" />
+                      </b>
+                    </div>
                   </div>
-                </div>
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoTongQuan} alt="" style={{ width: "50px" }} />
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoTinhThan} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.Mental-health" />
+                      </b>
+                    </div>
                   </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.General-examination" />
-                    </b>
-                  </div>
-                </div>
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoYhoc} alt="" style={{ width: "50px" }} />
-                  </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.Medical-tests" />
-                    </b>
-                  </div>
-                </div>
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoTinhThan} alt="" style={{ width: "50px" }} />
-                  </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.Mental-health" />
-                    </b>
-                  </div>
-                </div>
-                <div className="option-child">
-                  <div className="icon-child">
-                    <img src={logoNhaKhoa} alt="" style={{ width: "50px" }} />
-                  </div>
-                  <div className="text-child">
-                    <b>
-                      <FormattedMessage id="banner.Dental-examination" />
-                    </b>
+                  <div className="option-child">
+                    <div className="icon-child">
+                      <img src={logoNhaKhoa} alt="" style={{ width: "50px" }} />
+                    </div>
+                    <div className="text-child">
+                      <b>
+                        <FormattedMessage id="banner.Dental-examination" />
+                      </b>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </>
     );
   }

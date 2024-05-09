@@ -20,38 +20,38 @@ class Specialty extends Component {
                 </button>
               </div>
               <Slider {...settings}>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div style={{ textAlign: "center" }}>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                   <div>test</div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                 </div>
-                <div className="img-customize">
+                <div className="section-customize">
                   <div className="bg-img section-specialty"></div>
                 </div>
               </Slider>
