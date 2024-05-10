@@ -51,6 +51,11 @@ class Login extends Component {
       showPassword: !prevState.showPassword,
     }));
   };
+  handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      this.handleLogin();
+    }
+  };
   render() {
     return (
       <div className="container-login">
@@ -75,6 +80,7 @@ class Login extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={(e) => this.handleInputChange(e, "password")}
+                  onKeyDown={(e) => this.handleKeyDown(e)}
                 />
                 <span
                   type="button"

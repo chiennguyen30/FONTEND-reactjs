@@ -88,7 +88,7 @@ export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createAddNewUser(data);
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         toast.success("Add new user successfully");
         dispatch(saveUserSuccess());
@@ -140,7 +140,7 @@ export const deleteAUser = (id) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteUser(id);
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         toast.success("Delete a user successfully");
         dispatch(deleteUserSuccess());
@@ -166,7 +166,7 @@ export const editAUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await UpdateUser(data);
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         toast.success("Update a user successfully");
         dispatch(editUserSuccess());
@@ -192,7 +192,7 @@ export const fetchTopDoctor = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await getTopDoctorHome("");
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
@@ -215,7 +215,7 @@ export const fetchAllDoctors = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllDoctors();
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
@@ -239,7 +239,7 @@ export const saveDetailDoctor = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctorServices(data);
-      console.log("check res", res);
+
       if (res && res.errCode === 0) {
         toast.success("Save infor detail doctor successfully");
         dispatch({
@@ -256,6 +256,29 @@ export const saveDetailDoctor = (data) => {
       console.log(error);
       dispatch({
         type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+let a = 1
+export const fetchAllScheduleTime = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
       });
     }
   };

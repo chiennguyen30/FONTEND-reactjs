@@ -65,5 +65,11 @@
         "Health-facilities": "Health facilities",
         "Handbook": "Hand book",
         "What-does-the-media-talk-about?" : "What does the media talk about?"
+    },
+    "manage-schedule" :{
+        "title": "Manage doctor's medical examination plans",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save"
     }
 }
