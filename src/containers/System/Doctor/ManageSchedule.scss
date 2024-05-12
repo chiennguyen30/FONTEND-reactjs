@@ -12,9 +12,15 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    button {
+    .button {
       padding: 5px 15px;
       border: 1px solid gray;
+      background-color: #ddd;
+    }
+  }
+  .btn-schedule{
+    &.active{
+      background-color: orange;
     }
   }
 }
