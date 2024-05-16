@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailInforDoctor } from "../../../services/userServices";
+import DoctorSchedule from "./DoctorSchedule";
 import { LANGUAGES } from "../../../utils";
 class DetailDoctor extends Component {
   constructor() {
@@ -15,7 +16,6 @@ class DetailDoctor extends Component {
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
       let res = await getDetailInforDoctor(id);
-      console.log(res);
       if (res && res.errCode === 0) {
         this.setState({
           detailDoctor: res.data,
@@ -60,7 +60,14 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor">
+            <div className="content-left">
+              <DoctorSchedule
+                doctorIdFormParent={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
+              />
+            </div>
+            <div className="content-right"></div>
+          </div>
           <div className="detail-infor-doctor">
             {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
               <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}></div>

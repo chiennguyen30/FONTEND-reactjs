@@ -9,22 +9,29 @@ import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import { saveBulkDoctorServices } from "../../../services/userServices";
+
+// Khai báo class component ManageSchedule kế thừa từ Component
 class ManageSchedule extends Component {
+  // Khởi tạo state với giá trị ban đầu
   constructor(props) {
     super(props);
 
     this.state = {
-      listDoctors: [],
-      selectedDoctor: {},
-      currentDate: "",
-      rangeTime: [],
+      listDoctors: [], // Mảng chứa danh sách bác sĩ
+      selectedDoctor: {}, // Đối tượng chứa thông tin bác sĩ được chọn
+      currentDate: "", // Chuỗi chứa ngày được chọn
+      rangeTime: [], // Mảng chứa các khoảng thời gian làm việc
     };
   }
 
+  // Gọi các action để lấy dữ liệu danh sách bác sĩ và khoảng thời gian làm việc khi component được mount
   componentDidMount() {
     this.props.fetchAllDoctors();
     this.props.fetchAllScheduleTime();
   }
+
+  // Hàm xây dựng dữ liệu cho Select component để chọn bác sĩ
   buildDataInputSelect = (inputData) => {
     let result = [];
     let { language } = this.props;
@@ -40,13 +47,18 @@ class ManageSchedule extends Component {
     }
     return result;
   };
+
+  // Cập nhật state khi có sự thay đổi từ Redux store
   componentDidUpdate(prevProps, prevState, snapshot) {
+    // Cập nhật state listDoctors khi danh sách bác sĩ từ Redux store thay đổi
     if (prevProps.allDoctors !== this.props.allDoctors) {
       let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
       this.setState({
         listDoctors: dataSelect,
       });
     }
+
+    // Cập nhật state rangeTime khi khoảng thời gian làm việc từ Redux store thay đổi
     if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
       let data = this.props.allScheduleTime;
       if (data && data.length > 0) {
@@ -57,14 +69,20 @@ class ManageSchedule extends Component {
       });
     }
   }
+
+  // Hàm xử lý khi chọn bác sĩ từ Select component
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
   };
+
+  // Hàm xử lý khi chọn ngày từ DatePicker component
   handleOnchangeDatepicker = (date) => {
     this.setState({
       currentDate: date[0],
     });
   };
+
+  // Hàm xử lý khi click vào một khoảng thời gian làm việc
   handleClickBtnTime = (time) => {
     let { rangeTime } = this.state;
     if (rangeTime && rangeTime.length > 0) {
@@ -77,7 +95,8 @@ class ManageSchedule extends Component {
     }
   };
 
-  handleSaveSchedule = () => {
+  // Hàm xử lý khi click vào nút "Save"
+  handleSaveSchedule = async () => {
     let { selectedDoctor, currentDate, rangeTime } = this.state;
     let result = [];
     if (selectedDoctor && _.isEmpty(selectedDoctor)) {
@@ -89,24 +108,33 @@ class ManageSchedule extends Component {
       return;
     }
 
-    let formateDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-
+    // let formateDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    let formateDate = new Date(currentDate).getTime();
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
         selectedTime.map((schedule) => {
           let obj = {};
           obj.doctorId = selectedDoctor.value;
-          obj.data = formateDate;
-          obj.time = schedule.keyMap;
+          obj.date = formateDate;
+          obj.timeType = schedule.keyMap;
           result.push(obj);
         });
       } else {
-        toast.error("Invalid selected time!!");
+        toast.error("Invalid selected Type!!");
+        return;
       }
     }
+    let res = await saveBulkDoctorServices({
+      arrSchedule: result,
+      doctorId: selectedDoctor.value,
+      formateDate: formateDate,
+    });
+    console.log("check saveBulkDoctorServices : ", res);
     console.log("check result : ", result);
   };
+
+  // Phần render component
   render() {
     let { listDoctors, rangeTime } = this.state;
     return (

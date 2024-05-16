@@ -26,6 +26,17 @@
       }
     }
   }
+  .schedule-doctor{
+    margin: 0 100px;
+    height: 200px;
+    display: flex;
+    .content-left{
+      width: 50%;
+    }
+    .content-right{
+      width: 50%;
+    }
+  }
   .detail-infor-doctor {
     background-color:  #f9f9f9;
     padding-left: 20px;
