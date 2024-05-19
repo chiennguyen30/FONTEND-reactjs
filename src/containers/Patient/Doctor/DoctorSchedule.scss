@@ -1,7 +1,8 @@
 .doctor-schedule-container {
+  border-right: 1px solid #ddd;
   height: 100%;
   .all-schedule {
-    select{
+    select {
       border-left: none;
       border-top: none;
       border-right: none;
@@ -10,7 +11,7 @@
       color: #337ab7;
       padding: 10px 0;
       cursor: pointer;
-      option{
+      option {
         cursor: pointer;
       }
     }
@@ -27,21 +28,37 @@
       }
     }
     .time-content {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      button {
-        padding: 8px 10px;
-        border: none;
-        outline: none;
-        background-color: #fff04b;
-        border-radius: 5px;
-        min-width: 120px;
-        font-weight: 600;
-        &:hover{
-          background-color: #45c3b2;
-          color: white;
+      .time-content-btns {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+
+        button {
+          padding: 8px 10px;
+          border: none;
+          outline: none;
+          background-color: #fff04b;
+          border-radius: 5px;
+
+          font-weight: 600;
+          &:hover {
+            background-color: #45c3b2;
+            color: white;
+          }
         }
+        .btn-vie {
+          min-width: 120px;
+        }
+        .btn-en {
+          min-width: 170px;
+        }
+        .no-shedule {
+          font-style: italic;
+          font-size: 14px;
+        }
+      }
+      .book-free{
+        margin-top: 10px;
       }
     }
   }
