@@ -13,10 +13,11 @@ class DoctorSchedule extends Component {
       allDays: [],
     };
   }
+  // viết in hoa chữ cái đầu
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  setArrDays = (language) => {
+  getArrDays = (language) => {
     let allDays = [];
     for (let i = 0; i < 7; i++) {
       let object = {};
@@ -31,20 +32,31 @@ class DoctorSchedule extends Component {
       allDays.push(object);
     }
 
-    this.setState({
-      allDays: allDays,
-    });
+    return allDays;
   };
   async componentDidMount() {
     let { language } = this.props;
-    console.log("tieng viet", moment(new Date()).format("dddd - DD/MM"));
-    console.log("tieng anh", moment(new Date()).locale("en").format("ddd - DD/MM"));
-    this.setArrDays(language);
+    let allDays = this.getArrDays(language);
+
+    this.setState({
+      allDays: allDays,
+    });
   }
 
-  componentDidUpdate(prevProps, prevState, snapShot) {
+  async componentDidUpdate(prevProps, prevState, snapShot) {
     if (this.props.language !== prevProps.language) {
-      this.setArrDays(this.props.language);
+      let allDays = this.getArrDays(this.props.language);
+      this.setState({
+        allDays: allDays,
+      });
+    }
+    if (this.props.doctorIdFormParent !== prevProps.doctorIdFormParent) {
+      let allDays = this.getArrDays(this.props.language);
+
+      let res = await getScheduleDoctorByDate(this.props.doctorIdFormParent, allDays[0].value);
+      this.setState({
+        allAvalableTime: res.data ? res.data : [],
+      });
     }
   }
   handleOnchangeSelect = async (e) => {
