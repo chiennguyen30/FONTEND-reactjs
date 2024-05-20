@@ -30,7 +30,6 @@ export const fetchGenderSuccess = (genderData) => ({
   type: actionTypes.FETCH_GENDER_SUCCESS,
   data: genderData,
 });
-
 export const fetchGenderFailed = () => ({
   type: actionTypes.FETCH_GENDER_FAILED,
 });
@@ -162,6 +161,7 @@ export const deleteUserFailed = () => ({
   type: actionTypes.FETCH_DELETE_FAILED,
 });
 
+// actions edit a user
 export const editAUser = (data) => {
   return async (dispatch, getState) => {
     try {
@@ -260,7 +260,7 @@ export const saveDetailDoctor = (data) => {
     }
   };
 };
-let a = 1
+
 export const fetchAllScheduleTime = () => {
   return async (dispatch, getState) => {
     try {
@@ -283,3 +283,40 @@ export const fetchAllScheduleTime = () => {
     }
   };
 };
+
+export const getRequiredDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+      if (
+        resPrice &&
+        resPrice.errCode === 0 &&
+        resPayment &&
+        resPayment.errCode === 0 &&
+        resProvince &&
+        resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data,
+        };
+        dispatch(getRequiredDoctorInforSuccess(data));
+      } else {
+        dispatch(getRequiredDoctorInforFailed());
+      }
+    } catch (error) {
+      dispatch(getRequiredDoctorInforFailed());
+      console.log("getRequiredDoctorInforFailed  erro: ", error);
+    }
+  };
+};
+export const getRequiredDoctorInforSuccess = (data) => ({
+  type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_SUCCESS,
+  data: data,
+});
+export const getRequiredDoctorInforFailed = () => ({
+  type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_FAILED,
+});
