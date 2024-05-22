@@ -27,7 +27,7 @@ class OutstandingDoctor extends Component {
   };
   render() {
     const { settings, language } = this.props;
-    let arrDoctors = this.state.arrDoctors;
+    let { arrDoctors } = this.state;
     console.log("check doctor: ", arrDoctors);
     return (
       <>
@@ -70,7 +70,6 @@ class OutstandingDoctor extends Component {
                       ></div>
                       <div style={{ marginTop: 20, fontWeight: 600, fontSize: 16 }}>
                         <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                        <div>Tim mạch</div>
                       </div>
                     </div>
                   );
