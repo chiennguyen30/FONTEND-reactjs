@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./DoctorExtraInfor.scss";
 import { LANGUAGES } from "../../../utils";
-class DoctorExtraInfor extends Component {
+import { FormattedMessage } from "react-intl";
+import "./defaultClass.scss";
+class defaultClass extends Component {
   constructor() {
     super();
     this.state = {};
@@ -30,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DoctorExtraInfor);
+export default connect(mapStateToProps, mapDispatchToProps)(defaultClass);

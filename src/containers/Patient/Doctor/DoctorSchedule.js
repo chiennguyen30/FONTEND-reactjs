@@ -6,12 +6,15 @@ import moment from "moment";
 import localization from "moment/locale/vi";
 import { getScheduleDoctorByDate } from "../../../services/userServices";
 import { FormattedMessage } from "react-intl";
+import BookingModal from "./Modal/BookingModal";
 class DoctorSchedule extends Component {
   constructor() {
     super();
     this.state = {
       allAvalableTime: [],
       allDays: [],
+      isOpenModalBooking: false,
+      dataSheduleTimeModal: {},
     };
   }
   // Hàm viết hoa chữ cái đầu tiên của một chuỗi
@@ -96,9 +99,19 @@ class DoctorSchedule extends Component {
       console.log("check : ", res); // Log dữ liệu trả về từ API
     }
   };
-
+  handleClickSheduleTime = (time) => {
+    this.setState({
+      isOpenModalBooking: true,
+      dataSheduleTimeModal: time,
+    });
+  };
+  isCloseModalBooking = () => {
+    this.setState({
+      isOpenModalBooking: false,
+    });
+  };
   render() {
-    let { allDays, allAvalableTime } = this.state;
+    let { allDays, allAvalableTime, isOpenModalBooking, dataSheduleTimeModal } = this.state;
     let { language } = this.props;
     return (
       <>
@@ -137,6 +150,7 @@ class DoctorSchedule extends Component {
                         <button
                           className={language === LANGUAGES.VI ? "btn-vie" : "btn-en"}
                           key={index}
+                          onClick={() => this.handleClickSheduleTime(item)}
                         >
                           {timeDisplay}
                         </button>
@@ -159,6 +173,11 @@ class DoctorSchedule extends Component {
             </div>
           </div>
         </div>
+        <BookingModal
+          isOpenModal={isOpenModalBooking}
+          isCloseModal={this.isCloseModalBooking}
+          data={dataSheduleTimeModal}
+        />
       </>
     );
   }
