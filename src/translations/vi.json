@@ -80,6 +80,13 @@
             "no-schedule" : "Bác sĩ không có lịch hẹn trong khoảng thời gian này vui lòng chọn khoảng thời gian khác !!!",
             "choose" : "Chọn ",
             "book-free"  : " và đặt miễn phí "
+        },
+        "extra-infor-doctor" :{
+            "text-address" : "ĐỊA CHỈ KHÁM",
+            "EXAMINATION-PRICE": "Giá khám :",
+            "See-details" : "xem chi tiết",
+            "payment-methods" : "Phòng khám có thanh toán bằng hình thức bằng",
+            "hide-price" : "Ẩn bảng giá"
         }
     },
     "admin" : {
@@ -95,8 +102,6 @@
             "nameClinic" : "Tên phòng khám",
             "addressClinic" : "Địa chỉ phòng khám ",
             "note" : "Ghi chú"
-
-
         }
     }
 

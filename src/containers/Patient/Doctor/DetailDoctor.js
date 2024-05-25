@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { LANGUAGES } from "../../../utils";
 import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailInforDoctor } from "../../../services/userServices";
 import DoctorSchedule from "./DoctorSchedule";
-import { LANGUAGES } from "../../../utils";
+import DoctorExtraInfor from "./DoctorExtraInfor";
+
 class DetailDoctor extends Component {
   constructor() {
     super();
@@ -68,7 +70,9 @@ class DetailDoctor extends Component {
             <div className="content-left">
               <DoctorSchedule doctorIdFormParent={this.state.currentDoctorId} />
             </div>
-            <div className="content-right"></div>
+            <div className="content-right">
+              <DoctorExtraInfor doctorIdFormParent={this.state.currentDoctorId} />
+            </div>
           </div>
           <div className="detail-infor-doctor">
             {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (

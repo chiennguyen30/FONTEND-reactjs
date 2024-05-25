@@ -78,6 +78,13 @@
             "no-schedule" : "Doctors do not have appointments during this time period, please choose another time period !!!",
             "choose" : "Choose ",
             "book-free"  : " and book (free)"
+        },
+        "extra-infor-doctor" :{
+            "text-address" : "examination address",
+            "EXAMINATION-PRICE": "Examination price :",
+            "See-details" : "See details",
+            "payment-methods" : "The clinic accepts payment by",
+            "hide-price" : "Hide price"
         }
     },
     "admin" : {
@@ -93,8 +100,6 @@
             "nameClinic" : "Clinic's name",
             "addressClinic" : "Clinic's address  ",
             "note" : "note"
-
-
         }
     }
 }
