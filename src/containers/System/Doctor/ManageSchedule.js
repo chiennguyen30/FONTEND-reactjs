@@ -131,9 +131,13 @@ class ManageSchedule extends Component {
       formateDate: formateDate,
     });
     if (res && res.errCode === 0) {
-      toast.success("Save schedule success!!");
+      toast.success("Save schedule success!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
-      toast.error(" Error saveBulkDoctorServices!!");
+      toast.error(" Error saveBulkDoctorServices!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       console.log("check res : ", res);
     }
   };

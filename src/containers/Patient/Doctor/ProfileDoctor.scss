@@ -1,0 +1,24 @@
+.profile-doctor-container {
+  .intro-doctor {
+    display: flex;
+
+    .content-left {
+      width: 20%;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+    .content-right {
+      width: calc(100% - 80px);
+      display: flex;
+      flex-direction: column;
+      padding-left: 10px;
+      .up {
+        font-weight: 600;
+      }
+      .down {
+        text-align: justify;
+      }
+    }
+  }
+}

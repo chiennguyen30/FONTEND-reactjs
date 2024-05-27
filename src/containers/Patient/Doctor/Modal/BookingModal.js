@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { LANGUAGES } from "../../../../utils";
 import { Modal } from "reactstrap";
 import "./BookingModal.scss";
+import { FormattedMessage } from "react-intl";
+import ProfileDoctor from "../ProfileDoctor";
+import _ from "lodash";
+
 class BookingModal extends Component {
   constructor() {
     super();
@@ -17,53 +21,81 @@ class BookingModal extends Component {
 
   render() {
     let { language, isOpenModal, isCloseModal, data } = this.props;
-    console.log("check data : ", data);
+    let doctorId = data && !_.isEmpty(data) ? data.doctorId : "";
+
+    console.log("check res data  : ", data);
     return (
       <>
         <Modal
           isOpen={isOpenModal}
           className="booking-modal-container"
-          size="lg"
+          toggle={isCloseModal}
+          size="xl"
           fullscreen="sm"
           centered
         >
           <div className="booking-modal-content">
             <div className="booking-modal-header">
-              <span className="left">Thông tin đặt lịch khám bệnh</span>
+              <span className="left">
+                <FormattedMessage id="admin.schedule-examination.title" />
+              </span>
               <span className="right" onClick={isCloseModal}>
                 <i className="fas fa-times"></i>
               </span>
             </div>
             <div className="booking-modal-body ">
-              <div className="doctor-infor"></div>
-              <div className="price">gia kham 500000</div>
+              <div className="doctor-infor">
+                <ProfileDoctor doctorId={doctorId} isShowDescriptionDoctor={false} />
+              </div>
+
               <div className="row">
                 <div className="col-6 form-group">
-                  <label htmlFor="">ho va ten</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.name" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-6 form-group">
-                  <label htmlFor="">so dien thoai</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.phone-number" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-6 form-group">
-                  <label htmlFor="">dia chi email</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.email" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-6 form-group">
-                  <label htmlFor="">dia chi lien he</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.address" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-12 form-group">
-                  <label htmlFor="">ly do kham</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.medical-examination" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-6 form-group">
-                  <label htmlFor="">dat cho ai</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.set" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="col-6 form-group">
-                  <label htmlFor="">gioi tinh</label>
+                  <label htmlFor="">
+                    {" "}
+                    <FormattedMessage id="admin.schedule-examination.gender" />
+                  </label>
                   <input type="text" className="form-control" />
                 </div>
               </div>

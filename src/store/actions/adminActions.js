@@ -89,7 +89,9 @@ export const createNewUser = (data) => {
       let res = await createAddNewUser(data);
 
       if (res && res.errCode === 0) {
-        toast.success("Add new user successfully");
+        toast.success("Add new user successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         dispatch(saveUserSuccess());
         dispatch(fetchAllUserStart());
       } else {
@@ -141,7 +143,9 @@ export const deleteAUser = (id) => {
       let res = await deleteUser(id);
 
       if (res && res.errCode === 0) {
-        toast.success("Delete a user successfully");
+        toast.success("Delete a user successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         dispatch(deleteUserSuccess());
         dispatch(fetchAllUserStart());
       } else {
@@ -168,7 +172,9 @@ export const editAUser = (data) => {
       let res = await UpdateUser(data);
 
       if (res && res.errCode === 0) {
-        toast.success("Update a user successfully");
+        toast.success("Update a user successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         dispatch(editUserSuccess());
         dispatch(fetchAllUserStart());
       } else {
@@ -241,18 +247,24 @@ export const saveDetailDoctor = (data) => {
       let res = await saveDetailDoctorServices(data);
 
       if (res && res.errCode === 0) {
-        toast.success("Save infor detail doctor successfully");
+        toast.success("Save infor detail doctor successfully", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
         });
       } else {
-        toast.error("Save infor detail doctor failed");
+        toast.error("Save infor detail doctor failed", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
         });
       }
     } catch (error) {
-      toast.error("Save infor detail doctor failed");
+      toast.error("Save infor detail doctor failed", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       console.log(error);
       dispatch({
         type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,

@@ -1,29 +1,28 @@
-
-.homeheader-container{
+.homeheader-container {
   width: 100%;
   height: 78px;
-  background-color: #EDFFFA;
-  border-radius: 0 0  20px 20px; 
+  background-color: #edfffa;
+  border-radius: 0 0 20px 20px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  .homeheader-content{
+  .homeheader-content {
     width: 100%;
     height: 100%;
     display: flex;
-    .left-content{
+    .left-content {
       width: 25%;
       position: relative;
       display: flex;
-      .header-logo{
+      .header-logo {
         width: 100%;
-        background:url(../../assets//images/ef33fc54534d4ca7444b21d7ea4b748c.png) center   center no-repeat ;
+        background: url(../../assets//images/ef33fc54534d4ca7444b21d7ea4b748c.png) center center
+          no-repeat;
         background-size: 60%;
-        
-        cursor: pointer;
 
+        cursor: pointer;
       }
-      i{
+      i {
         position: absolute;
         top: 50%;
         left: 12%;
@@ -33,36 +32,30 @@
         cursor: pointer;
       }
     }
-    .center-content{
+    .center-content {
       width: 50%;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: space-around;
       gap: 20px;
-      
-      .child-content:hover{
+
+      .child-content {
         cursor: pointer;
-        background-color: rgb(240, 201, 41);
-        transition:  0.5s ease-in;
-        .sub-title{
-          font-size: 13px;
-        }
       }
-      
     }
-    .right-content{
+    .right-content {
       width: 25%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-     
-      .support{
+
+      .support {
         padding-right: 40px;
         display: flex;
         align-items: center;
-        i{
+        i {
           margin-right: 5px;
         }
       }
@@ -71,58 +64,53 @@
         margin: 0 5px; /* Điều chỉnh khoảng cách giữa các phần tử */
         color: #888; /* Màu của gạch chia */
       }
-      .language-vi{
+      .language-vi {
         opacity: 0.2;
-          &.active{
-            opacity: 1;
-            color: orange
-          }
-         
+        &.active {
+          opacity: 1;
+          color: orange;
+        }
       }
-      & :hover{
+      & :hover {
         opacity: 1;
       }
-      .language-en{
-          opacity: 0.2;
-          &.active{
-            opacity: 1;
-            color: red
-          }  
-          
+      .language-en {
+        opacity: 0.2;
+        &.active {
+          opacity: 1;
+          color: red;
+        }
       }
-      & :hover{
+      & :hover {
         opacity: 1;
       }
-
     }
   }
 }
 
-.homeheader-banner{
+.homeheader-banner {
   height: 450px;
   background-image: url(../../assets/images/bannerMain.jpg);
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
-  .homeheader-backround-linear{
+  .homeheader-backround-linear {
     height: 100%;
-    .content-up{
+    .content-up {
       height: 50%;
       padding-top: 1.5em;
       color: darkorange;
-      
-      .title-1{
+
+      .title-1 {
         margin: 15px 0;
       }
-      .text-introduce{
+      .text-introduce {
         text-align: center;
         font-size: 40px;
         text-shadow: 1px 1px 1px #333;
-        
-    
       }
-      .search{
+      .search {
         margin: 20px auto;
         width: fit-content;
         display: flex;
@@ -131,11 +119,11 @@
         padding: 10px;
         border-radius: 30px;
         background-color: rgb(255, 180, 40);
-        i{
+        i {
           margin: 0 5px;
           color: black;
         }
-        input{
+        input {
           height: 30px;
           width: 400px;
           background: transparent;
@@ -144,24 +132,22 @@
         }
       }
     }
-    
-    .content-down{
- 
+
+    .content-down {
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 255));
       height: 46%;
-      .options{
+      .options {
         text-align: center;
         grid-gap: 50px;
         display: flex;
-        .option-child{
+        .option-child {
           width: 80px;
-          padding:  5px;
-           &:hover{
+          padding: 5px;
+          &:hover {
             cursor: pointer;
           }
         }
       }
     }
   }
- 
 }

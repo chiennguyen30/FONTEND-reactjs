@@ -102,6 +102,16 @@
             "nameClinic" : "Tên phòng khám",
             "addressClinic" : "Địa chỉ phòng khám ",
             "note" : "Ghi chú"
+        },
+        "schedule-examination": {
+            "title": "Thông tin đặt lịch khám bệnh",
+            "name" : "Họ và tên",
+            "phone-number" :"Số điện thoại",
+            "email" : "địa chỉ Email",
+            "address" : "Địa chỉ liên hệ",
+            "medical-examination" : "Lý do khám",
+            "set" : "đặt cho ai",
+            "gender" :"Giới tính"
         }
     }
 

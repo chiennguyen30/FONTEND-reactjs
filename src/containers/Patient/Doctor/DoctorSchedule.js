@@ -107,7 +107,7 @@ class DoctorSchedule extends Component {
   };
   isCloseModalBooking = () => {
     this.setState({
-      isOpenModalBooking: false,
+      isOpenModalBooking: !this.state.isOpenModalBooking,
     });
   };
   render() {

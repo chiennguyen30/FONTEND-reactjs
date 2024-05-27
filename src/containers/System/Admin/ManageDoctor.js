@@ -56,7 +56,7 @@ class ManageDoctor extends Component {
       if (type === "PRICE") {
         inputData.map((item, index) => {
           let object = {};
-          let labelVi = `${item.valueVI} VND`;
+          let labelVi = `${item.valueVI} VNĐ`;
           let labelEn = `${item.valueEN} USD`;
           object.label = language === LANGUAGES.VI ? labelVi : labelEn;
           object.value = item.keyMap;
@@ -117,22 +117,40 @@ class ManageDoctor extends Component {
       contentHTML: html,
     });
   };
+  resetState = () => {
+    this.setState({
+      contentMarkdown: "",
+      contentHTML: "",
+      selectedDoctor: "",
+      description: "",
+      hasOldData: false,
+      selectPrice: "",
+      selectPayment: "",
+      selectProvince: "",
+      nameClinic: "",
+      addressClinic: "",
+      note: "",
+    });
+  };
   handleSaveContentMarkDown = () => {
     let { hasOldData } = this.state;
-    this.props.saveDetailDoctor({
-      contentHTML: this.state.contentHTML,
-      contentMarkdown: this.state.contentMarkdown,
-      description: this.state.description,
-      doctorId: this.state.selectedDoctor.value,
-      action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
-
-      selectPrice: this.state.selectPrice.value,
-      selectPayment: this.state.selectPayment.value,
-      selectProvince: this.state.selectProvince.value,
-      nameClinic: this.state.nameClinic,
-      addressClinic: this.state.addressClinic,
-      note: this.state.note,
-    });
+    this.props
+      .saveDetailDoctor({
+        contentHTML: this.state.contentHTML,
+        contentMarkdown: this.state.contentMarkdown,
+        description: this.state.description,
+        doctorId: this.state.selectedDoctor.value,
+        action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
+        selectPrice: this.state.selectPrice.value,
+        selectPayment: this.state.selectPayment.value,
+        selectProvince: this.state.selectProvince.value,
+        nameClinic: this.state.nameClinic,
+        addressClinic: this.state.addressClinic,
+        note: this.state.note,
+      })
+      .then(() => {
+        this.resetState();
+      });
   };
 
   handleChangeSelect = async (selectedDoctor) => {
