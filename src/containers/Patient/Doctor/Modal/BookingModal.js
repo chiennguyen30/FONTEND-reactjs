@@ -23,7 +23,6 @@ class BookingModal extends Component {
     let { language, isOpenModal, isCloseModal, data } = this.props;
     let doctorId = data && !_.isEmpty(data) ? data.doctorId : "";
 
-    console.log("check res data  : ", data);
     return (
       <>
         <Modal
@@ -45,7 +44,11 @@ class BookingModal extends Component {
             </div>
             <div className="booking-modal-body ">
               <div className="doctor-infor">
-                <ProfileDoctor doctorId={doctorId} isShowDescriptionDoctor={false} />
+                <ProfileDoctor
+                  doctorId={doctorId}
+                  isShowDescriptionDoctor={false}
+                  dataTime={data}
+                />
               </div>
 
               <div className="row">

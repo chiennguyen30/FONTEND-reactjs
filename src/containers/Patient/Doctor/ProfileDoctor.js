@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import "./ProfileDoctor.scss";
 import { getProfileDoctorById } from "../../../services/userServices";
 import NumberFormat from "react-number-format";
+import _ from "lodash";
+import moment from "moment";
 class ProfileDoctor extends Component {
   constructor() {
     super();
@@ -39,21 +41,44 @@ class ProfileDoctor extends Component {
       // this.getInforDoctor(this.props.doctorId);
     }
   }
-
+  renderTimeBooking = (dataTime) => {
+    let { language } = this.props;
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let time =
+        dataTime.timeTypeData && language === LANGUAGES.VI
+          ? dataTime.timeTypeData.valueVi
+          : dataTime.timeTypeData.valueEn;
+      let date =
+        language === LANGUAGES.VI
+          ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
+          : moment
+              .unix(+dataTime.date / 1000)
+              .locale("en")
+              .format("ddd - MM/DD/YYYY");
+      return (
+        <>
+          <div>
+            {time} - {date}
+          </div>
+          <div>Đặt lịch miễn phí</div>
+        </>
+      );
+    }
+  };
   render() {
-    let { language, isShowDescriptionDoctor } = this.props;
+    let { language, isShowDescriptionDoctor, dataTime } = this.props;
     let { dataProfile } = this.state;
     let nameVi = "";
     let nameEn = "";
-
-    if (dataProfile?.positionData) {
-      const { valueVi, valueEn } = dataProfile.positionData;
-      const { firstName, lastName } = dataProfile;
-
-      nameVi = `${valueVi}, ${lastName} ${firstName}`;
-      nameEn = `${valueEn}, ${firstName} ${lastName}`;
+    if (dataProfile && dataProfile.positionData) {
+      nameVi = `${dataProfile.positionData.valueVi}, ${
+        dataProfile.lastName + " " + dataProfile.firstName
+      }`;
+      nameEn = `${dataProfile.positionData.valueEn}, ${
+        dataProfile.firstName + " " + dataProfile.lastName
+      }`;
     }
-    console.log("state : ", this.state);
+    console.log("props : ", dataTime);
 
     return (
       <>
@@ -70,17 +95,19 @@ class ProfileDoctor extends Component {
             <div className="content-right">
               <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
               <div className="down">
-                {isShowDescriptionDoctor === true && (
+                {isShowDescriptionDoctor === true ? (
                   <>
                     {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && (
                       <span>{dataProfile.Markdown.description}</span>
                     )}
                   </>
+                ) : (
+                  <>{this.renderTimeBooking(dataTime)}</>
                 )}
               </div>
             </div>
           </div>
-          <div>{dataProfile && language === LANGUAGES.VI ? dataProfile.address : ""}</div>
+
           <div className="price">
             Giá khám :{" "}
             {
