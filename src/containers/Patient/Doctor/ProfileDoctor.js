@@ -60,7 +60,9 @@ class ProfileDoctor extends Component {
           <div>
             {time} - {date}
           </div>
-          <div>Đặt lịch miễn phí</div>
+          <div>
+            <FormattedMessage id="patient.booking-modal.priceBooking" />
+          </div>
         </>
       );
     }
@@ -78,7 +80,6 @@ class ProfileDoctor extends Component {
         dataProfile.firstName + " " + dataProfile.lastName
       }`;
     }
-    console.log("props : ", dataTime);
 
     return (
       <>

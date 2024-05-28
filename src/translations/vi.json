@@ -87,6 +87,19 @@
             "See-details" : "xem chi tiết",
             "payment-methods" : "Phòng khám có thanh toán bằng hình thức bằng",
             "hide-price" : "Ẩn bảng giá"
+        },
+        "booking-modal": {
+            "title": "Thông tin đặt lịch khám bệnh",
+            "name" : "Họ và tên",
+            "phone-number" :"Số điện thoại",
+            "email" : "Địa chỉ Email",
+            "address" : "Địa chỉ liên hệ",
+            "reason" : "Lý do khám",
+            "birthday" : "Ngày sinh",
+            "gender" :"Giới tính",
+            "confirm" : "Xác nhận",
+            "cancel":  "Hủy",
+            "priceBooking" : "Đặt lịch miễn phí"
         }
     },
     "admin" : {
@@ -102,17 +115,8 @@
             "nameClinic" : "Tên phòng khám",
             "addressClinic" : "Địa chỉ phòng khám ",
             "note" : "Ghi chú"
-        },
-        "schedule-examination": {
-            "title": "Thông tin đặt lịch khám bệnh",
-            "name" : "Họ và tên",
-            "phone-number" :"Số điện thoại",
-            "email" : "địa chỉ Email",
-            "address" : "Địa chỉ liên hệ",
-            "medical-examination" : "Lý do khám",
-            "set" : "đặt cho ai",
-            "gender" :"Giới tính"
         }
+        
     }
 
 }

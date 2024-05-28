@@ -85,6 +85,20 @@
             "See-details" : "See details",
             "payment-methods" : "The clinic accepts payment by",
             "hide-price" : "Hide price"
+        },
+        "booking-modal": {
+            "title": "Information on scheduling medical examinations",
+            "name" : "Full name",
+            "phone-number" :"Phone number",
+            "email" : "Email",
+            "address" : "Address",
+            "reason" : "Reason for medical examination",
+            "birthday" : "Birthday",
+            "gender" :"Gender",
+            "confirm" : "Confirm",
+            "cancel":  "cancel",
+            "priceBooking" : "Schedule a free appointment"
+
         }
     },
     "admin" : {
@@ -100,16 +114,6 @@
             "nameClinic" : "Clinic's name",
             "addressClinic" : "Clinic's address  ",
             "note" : "note"
-        },
-        "schedule-examination": {
-            "title": "Information on scheduling medical examinations",
-            "name" : "Full name",
-            "phone-number" :"Phone number",
-            "email" : "Email",
-            "address" : "address",
-            "medical-examination" : "Reason for medical examination",
-            "set" : "schedule someone",
-            "gender" :"gender"
         }
     }
 }
