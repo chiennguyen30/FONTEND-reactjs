@@ -110,7 +110,7 @@ class ProfileDoctor extends Component {
           </div>
 
           <div className="price">
-            Giá khám :{" "}
+            <FormattedMessage id="patient.booking-modal.price" /> :{" "}
             {
               dataProfile &&
                 dataProfile.Doctor_Infor &&

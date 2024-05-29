@@ -97,7 +97,8 @@
             "gender" :"Gender",
             "confirm" : "Confirm",
             "cancel":  "cancel",
-            "priceBooking" : "Schedule a free appointment"
+            "priceBooking" : "Schedule a free appointment",
+            "price" :"Medical examination price"
 
         }
     },

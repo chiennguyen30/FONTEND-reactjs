@@ -99,7 +99,8 @@
             "gender" :"Giới tính",
             "confirm" : "Xác nhận",
             "cancel":  "Hủy",
-            "priceBooking" : "Đặt lịch miễn phí"
+            "priceBooking" : "Đặt lịch miễn phí",
+            "price" :"Giá khám bệnh"
         }
     },
     "admin" : {
