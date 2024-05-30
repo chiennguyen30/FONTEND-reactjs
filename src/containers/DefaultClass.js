@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LANGUAGES } from "../../../utils";
-import { FormattedMessage } from "react-intl";
 import "./defaultClass.scss";
 class defaultClass extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -16,7 +14,6 @@ class defaultClass extends Component {
   async componentDidUpdate(prevProps, prevState, snapShot) {}
 
   render() {
-    let { language } = this.props;
     return <></>;
   }
 }
