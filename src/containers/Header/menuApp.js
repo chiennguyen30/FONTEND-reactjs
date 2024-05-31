@@ -1,6 +1,6 @@
 export const adminMenu = [
+  //quản lý người dùng
   {
-    //quản lý người dùng
     name: "menu.admin.manage-user",
     menus: [
       {
@@ -34,8 +34,8 @@ export const adminMenu = [
       },
     ],
   },
+  //quản lý phòng khám
   {
-    //quản lý phòng khám
     name: "menu.admin.clinic",
     menus: [
       {
@@ -44,8 +44,8 @@ export const adminMenu = [
       },
     ],
   },
+  //quản lý chuyên khoa
   {
-    //quản lý chuyên khoa
     name: "menu.admin.specialty",
     menus: [
       {
@@ -54,8 +54,8 @@ export const adminMenu = [
       },
     ],
   },
+  //quản lý cẩm năng
   {
-    //quản lý cẩm năng
     name: "menu.admin.handbook",
     menus: [
       {

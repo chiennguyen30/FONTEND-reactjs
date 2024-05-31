@@ -107,7 +107,7 @@ class UserRedux extends Component {
   openPreviewImg = () => {
     this.setState({ isOpen: true });
   };
-  onChangeInput = (e, id) => {
+  handleOnChangeInput = (e, id) => {
     let copyState = { ...this.state };
     copyState[id] = e.target.value;
     this.setState({
@@ -226,7 +226,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={email}
                   onChange={(e) => {
-                    this.onChangeInput(e, "email");
+                    this.handleOnChangeInput(e, "email");
                   }}
                 />
               </div>
@@ -240,7 +240,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={password}
                   onChange={(e) => {
-                    this.onChangeInput(e, "password");
+                    this.handleOnChangeInput(e, "password");
                   }}
                 />
               </div>
@@ -253,7 +253,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={firstName}
                   onChange={(e) => {
-                    this.onChangeInput(e, "firstName");
+                    this.handleOnChangeInput(e, "firstName");
                   }}
                 />
               </div>
@@ -266,7 +266,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={lastName}
                   onChange={(e) => {
-                    this.onChangeInput(e, "lastName");
+                    this.handleOnChangeInput(e, "lastName");
                   }}
                 />
               </div>
@@ -279,7 +279,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={phoneNumber}
                   onChange={(e) => {
-                    this.onChangeInput(e, "phoneNumber");
+                    this.handleOnChangeInput(e, "phoneNumber");
                   }}
                 />
               </div>
@@ -292,7 +292,7 @@ class UserRedux extends Component {
                   className="form-control"
                   value={address}
                   onChange={(e) => {
-                    this.onChangeInput(e, "address");
+                    this.handleOnChangeInput(e, "address");
                   }}
                 />
               </div>
@@ -304,7 +304,7 @@ class UserRedux extends Component {
                   value={gender}
                   className="form-control"
                   onChange={(e) => {
-                    this.onChangeInput(e, "gender");
+                    this.handleOnChangeInput(e, "gender");
                   }}
                 >
                   {/* Render danh sách genders */}
@@ -324,7 +324,7 @@ class UserRedux extends Component {
                   value={position}
                   className="form-control"
                   onChange={(e) => {
-                    this.onChangeInput(e, "position");
+                    this.handleOnChangeInput(e, "position");
                   }}
                 >
                   {/* Render danh sách positions */}
@@ -344,7 +344,7 @@ class UserRedux extends Component {
                   value={role}
                   className="form-control"
                   onChange={(e) => {
-                    this.onChangeInput(e, "role");
+                    this.handleOnChangeInput(e, "role");
                   }}
                 >
                   {/* Render danh sách roles */}
