@@ -28,7 +28,11 @@
 .slick-disabled {
   display: none !important;
 }
-
+.text-all-font-weight{
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 10px;
+}
 .section-share {
   &.section-specialty {
     background-color: #f5f5f5;
@@ -74,16 +78,17 @@
     cursor: pointer;
     height: 300px;
     display: flex;
+    flex-direction: column;
     .bg-img {
       height: 70%;
       width: 80%;
       // background-size: cover !important;
       border-radius: 15px;
-      border: 2px solid rgb(176, 176, 176);
+      
       margin: 0 43px;
       &.section-specialty {
-        background: url("../../assets/images/Specialized/101627-cham-cuu.png") center center/cover
-          no-repeat;
+        // background: url("../../assets/images/Specialized/101627-cham-cuu.png") center center/cover
+        //   no-repeat;
       }
       &.section-specialty-medicalFacility {
         background: url("../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg") center

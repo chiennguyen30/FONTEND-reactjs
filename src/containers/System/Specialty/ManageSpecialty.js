@@ -17,6 +17,7 @@ class ManageSpecialty extends Component {
       descriptionHTML: "",
       descriptionMarkdown: "",
     };
+    this.fileInputRef = React.createRef(); // Thêm dòng này
   }
 
   // Gọi hàm getArrDays khi component được mount
@@ -51,6 +52,15 @@ class ManageSpecialty extends Component {
     let res = await postCreateNewSpecialty(this.state);
     if (res && res.errCode === 0) {
       toast.success("successed !!!");
+      this.setState({
+        name: "",
+        imageBase64: "",
+        descriptionHTML: "",
+        descriptionMarkdown: "",
+      });
+      if (this.fileInputRef.current) {
+        this.fileInputRef.current.value = ""; // Đặt lại giá trị của input file
+      }
     } else {
       toast.error("Error!!!");
       console.log("check res : ", res);
@@ -76,6 +86,7 @@ class ManageSpecialty extends Component {
               <label htmlFor="">Ảnh chuyên khoa</label>
               <input
                 type="file"
+                ref={this.fileInputRef} // Gán ref cho input file
                 className="form-control-file"
                 onChange={(e) => this.handleOnchangeImg(e)}
               />

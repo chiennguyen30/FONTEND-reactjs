@@ -3,9 +3,28 @@ import { connect } from "react-redux";
 import Slider from "react-slick";
 import "./Specialty.scss";
 import { FormattedMessage } from "react-intl";
+import { getAllSpecialty } from "../../../services/userServices";
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSpecialty: [],
+    };
+  }
+  async componentDidMount() {
+    let res = await getAllSpecialty();
+    console.log("check res : ", res);
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.data,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapShot) {}
   render() {
     const { settings } = this.props;
+    let { dataSpecialty } = this.state;
     return (
       <>
         <div>
@@ -20,40 +39,25 @@ class Specialty extends Component {
                 </button>
               </div>
               <Slider {...settings}>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div style={{ textAlign: "center" }}>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                  <div>test</div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                </div>
-                <div className="section-customize">
-                  <div className="bg-img section-specialty"></div>
-                </div>
+                {dataSpecialty &&
+                  dataSpecialty.length > 0 &&
+                  dataSpecialty.map((item, index) => {
+                    return (
+                      <>
+                        <div className="section-customize" key={index}>
+                          <div
+                            className="bg-img section-specialty"
+                            style={{
+                              background: `url(${item.image}) center center/cover no-repeat`,
+                            }}
+                          ></div>
+                          <div style={{ textAlign: "center" }} className="text-all-font-weight">
+                            {item.name}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
               </Slider>
             </div>
           </div>
