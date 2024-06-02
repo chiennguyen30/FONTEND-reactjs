@@ -113,8 +113,10 @@
             "payment" : "payment",
             "province" : "province",
             "nameClinic" : "Clinic's name",
-            "addressClinic" : "Clinic's address  ",
-            "note" : "note"
+            "addressClinic" : "Clinic's address",
+            "note" : "note",
+            "speciality" :"Choose a speciality",
+            "choose-clinic" : "Choose clinic"
         }
     }
 }
