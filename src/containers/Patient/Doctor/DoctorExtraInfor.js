@@ -15,7 +15,16 @@ class DoctorExtraInfor extends Component {
   }
 
   // Gọi hàm getArrDays khi component được mount
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.doctorIdFormParent) {
+      let res = await getExtraDoctorInforById(this.props.doctorIdFormParent);
+      if (res && res.errCode === 0) {
+        this.setState({
+          extraInfor: res.data,
+        });
+      }
+    }
+  }
 
   // Cập nhật state khi có sự thay đổi từ Redux store hoặc props
   async componentDidUpdate(prevProps, prevState, snapShot) {
@@ -120,11 +129,18 @@ class DoctorExtraInfor extends Component {
                   <div className="note">{extraInfor && extraInfor.note ? extraInfor.note : ""}</div>
                 </div>
                 <div className="payment">
-                  <FormattedMessage id="patient.extra-infor-doctor.payment-methods" /> :{" "}
-                  {extraInfor && extraInfor.paymentTypeData && language === LANGUAGES.VI
-                    ? extraInfor.paymentTypeData.valueVi
-                    : extraInfor.paymentTypeData.valueEn}
+                  <FormattedMessage id="patient.extra-infor-doctor.payment-methods" /> :
+                  {extraInfor && extraInfor.paymentTypeData ? (
+                    language === LANGUAGES.VI ? (
+                      extraInfor.paymentTypeData.valueVi
+                    ) : (
+                      extraInfor.paymentTypeData.valueEn
+                    )
+                  ) : (
+                    <FormattedMessage id="patient.extra-infor-doctor.no-infor" />
+                  )}
                 </div>
+
                 <div className="hide-price">
                   <span onClick={() => this.handleIsShowDetailInfor(false)}>
                     <FormattedMessage id="patient.extra-infor-doctor.hide-price" />

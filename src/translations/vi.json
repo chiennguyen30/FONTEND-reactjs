@@ -86,7 +86,8 @@
             "EXAMINATION-PRICE": "Giá khám :",
             "See-details" : "xem chi tiết",
             "payment-methods" : "Phòng khám có thanh toán bằng hình thức bằng",
-            "hide-price" : "Ẩn bảng giá"
+            "hide-price" : "Ẩn bảng giá",
+            "no-infor" : " Không có thông tin thanh toán"
         },
         "booking-modal": {
             "title": "Thông tin đặt lịch khám bệnh",

@@ -84,7 +84,8 @@
             "EXAMINATION-PRICE": "Examination price :",
             "See-details" : "See details",
             "payment-methods" : "The clinic accepts payment by",
-            "hide-price" : "Hide price"
+            "hide-price" : "Hide price",
+            "no-infor" : " No payment information available"
         },
         "booking-modal": {
             "title": "Information on scheduling medical examinations",

@@ -163,6 +163,7 @@ class ManageDoctor extends Component {
         description: this.state.description,
         doctorId: this.state.selectedDoctor.value,
         action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
+
         selectPrice: this.state.selectPrice.value,
         selectPayment: this.state.selectPayment.value,
         selectProvince: this.state.selectProvince.value,
@@ -182,7 +183,7 @@ class ManageDoctor extends Component {
 
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
-    let { listPrice, listPayment, listProvince, listSpecialty } = this.state;
+    let { listPrice, listPayment, listProvince } = this.state;
     let res = await getDetailInforDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
