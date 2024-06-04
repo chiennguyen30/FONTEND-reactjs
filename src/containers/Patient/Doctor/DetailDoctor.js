@@ -63,6 +63,15 @@ class DetailDoctor extends Component {
                 {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description && (
                   <span>{detailDoctor.Markdown.description}</span>
                 )}
+                <div>
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
+                  {detailDoctor &&
+                    detailDoctor.Doctor_Infor &&
+                    detailDoctor.Doctor_Infor.provinceTypeData &&
+                    (language === LANGUAGES.VI
+                      ? detailDoctor.Doctor_Infor.provinceTypeData.valueVi
+                      : detailDoctor.Doctor_Infor.provinceTypeData.valueEn)}
+                </div>
               </div>
             </div>
           </div>

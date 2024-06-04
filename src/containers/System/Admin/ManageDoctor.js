@@ -9,20 +9,20 @@ import "./ManageDoctor.scss";
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils";
 import { getDetailInforDoctor } from "../../../services/userServices";
 import { FormattedMessage } from "react-intl";
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+const mdParser = new MarkdownIt(/* Markdown-it options */); // Khởi tạo đối tượng mdParser với các tùy chọn mặc định
 
 class ManageDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //save to markDown table
+      // Lưu vào bảng markDown
       contentMarkdown: "",
       contentHTML: "",
       selectedDoctor: "",
       description: "",
       listDoctors: [],
       hasOldData: false,
-      // save to doctor_infor table
+      // Lưu vào bảng doctor_infor
       listPrice: [],
       listPayment: [],
       listProvince: [],
@@ -44,10 +44,13 @@ class ManageDoctor extends Component {
   }
 
   componentDidMount() {
+    // Gọi các hành động để lấy dữ liệu khi component được mount
     this.props.fetchAllDoctors();
     this.props.getAllRequiredDoctorInfor();
   }
+
   buildDataInputSelect = (inputData, type) => {
+    // Xây dựng dữ liệu đầu vào cho component Select
     let result = [];
     let { language } = this.props;
     if (inputData && inputData.length > 0) {
@@ -92,7 +95,9 @@ class ManageDoctor extends Component {
     }
     return result;
   };
+
   componentDidUpdate(prevProps, prevState, snapshot) {
+    // Cập nhật lại state khi nhận được props mới
     if (prevProps.allDoctors !== this.props.allDoctors) {
       let dataSelect = this.buildDataInputSelect(this.props.allDoctors, "USERS");
       this.setState({
@@ -113,7 +118,7 @@ class ManageDoctor extends Component {
       });
     }
 
-    // khi thay đổi language thì sẽ setState lại
+    // Khi thay đổi ngôn ngữ thì sẽ setState lại
     if (prevProps.language !== this.props.language) {
       let dataSelect = this.buildDataInputSelect(this.props.allDoctors, "USERS");
       let { resPayment, resPrice, resProvince } = this.props.allRequiredDoctorInfor;
@@ -130,12 +135,15 @@ class ManageDoctor extends Component {
   }
 
   handleEditorChange = ({ html, text }) => {
+    // Cập nhật state khi nội dung markdown thay đổi
     this.setState({
       contentMarkdown: text,
       contentHTML: html,
     });
   };
+
   resetState = () => {
+    // Reset lại state về giá trị mặc định
     this.setState({
       contentMarkdown: "",
       contentHTML: "",
@@ -154,36 +162,60 @@ class ManageDoctor extends Component {
       specialtyId: "",
     });
   };
+
   handleSaveContentMarkDown = () => {
-    let { hasOldData } = this.state;
+    // Lưu nội dung markdown và thông tin bác sĩ
+    let {
+      hasOldData,
+      contentHTML,
+      contentMarkdown,
+      selectedDoctor,
+      description,
+      selectPrice,
+      selectPayment,
+      selectProvince,
+      nameClinic,
+      addressClinic,
+      note,
+      selectClinic,
+      selectSpecialty,
+    } = this.state;
+
+    if (!selectedDoctor || !selectSpecialty) {
+      // Xử lý trường hợp khi các trường bắt buộc không được chọn
+      console.error("Missing selected doctor or specialty");
+      return;
+    }
+
     this.props
       .saveDetailDoctor({
-        contentHTML: this.state.contentHTML,
-        contentMarkdown: this.state.contentMarkdown,
-        description: this.state.description,
-        doctorId: this.state.selectedDoctor.value,
+        contentHTML,
+        contentMarkdown,
+        description,
+        doctorId: selectedDoctor.value,
         action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
 
-        selectPrice: this.state.selectPrice.value,
-        selectPayment: this.state.selectPayment.value,
-        selectProvince: this.state.selectProvince.value,
-        nameClinic: this.state.nameClinic,
-        addressClinic: this.state.addressClinic,
-        note: this.state.note,
-        clinicId:
-          this.state.selectClinic && this.state.selectClinic.value
-            ? this.state.selectClinic.value
-            : "",
-        specialtyId: this.state.selectSpecialty.value,
+        selectPrice: selectPrice ? selectPrice.value : null,
+        selectPayment: selectPayment ? selectPayment.value : null,
+        selectProvince: selectProvince ? selectProvince.value : null,
+        nameClinic,
+        addressClinic,
+        note,
+        clinicId: selectClinic && selectClinic.value ? selectClinic.value : "",
+        specialtyId: selectSpecialty.value,
       })
       .then(() => {
         this.resetState();
+      })
+      .catch((error) => {
+        console.error("Error saving doctor details:", error);
       });
   };
 
   handleChangeSelect = async (selectedDoctor) => {
+    // Cập nhật state khi chọn bác sĩ
     this.setState({ selectedDoctor });
-    let { listPrice, listPayment, listProvince } = this.state;
+    let { listPrice, listPayment, listProvince, listSpecialty } = this.state;
     let res = await getDetailInforDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
@@ -192,9 +224,11 @@ class ManageDoctor extends Component {
         paymentId,
         priceId,
         provinceId,
+        specialtyId,
         note,
         selectPayment,
         selectPrice,
+        selectSpecialty,
         selectProvince = " ";
       if (res.data.Doctor_Infor) {
         addressClinic = res.data.Doctor_Infor.addressClinic;
@@ -203,6 +237,7 @@ class ManageDoctor extends Component {
         paymentId = res.data.Doctor_Infor.paymentId;
         priceId = res.data.Doctor_Infor.priceId;
         provinceId = res.data.Doctor_Infor.provinceId;
+        specialtyId = res.data.Doctor_Infor.specialtyId;
 
         selectPayment = listPayment.find((item) => {
           return item && item.value === paymentId;
@@ -212,6 +247,9 @@ class ManageDoctor extends Component {
         });
         selectProvince = listProvince.find((item) => {
           return item && item.value === provinceId;
+        });
+        selectSpecialty = listSpecialty.find((item) => {
+          return item && item.value === specialtyId;
         });
       }
       this.setState({
@@ -225,6 +263,7 @@ class ManageDoctor extends Component {
         selectPayment: selectPayment,
         selectPrice: selectPrice,
         selectProvince: selectProvince,
+        selectSpecialty: selectSpecialty,
       });
     } else {
       this.setState({
@@ -238,11 +277,13 @@ class ManageDoctor extends Component {
         selectPayment: "",
         selectPrice: "",
         selectProvince: "",
+        selectSpecialty: "",
       });
     }
   };
 
   handleChangeSelectDoctorInfor = async (selectedDoctor, name) => {
+    // Cập nhật state khi chọn thông tin bác sĩ
     let stateName = name.name;
     let stateCopy = { ...this.state };
     stateCopy[stateName] = selectedDoctor;
@@ -252,15 +293,16 @@ class ManageDoctor extends Component {
   };
 
   handleOnChangeText = (e, id) => {
+    // Cập nhật state khi thay đổi giá trị các trường nhập liệu
     let stateCopy = { ...this.state };
     stateCopy[id] = e.target.value;
     this.setState({
       ...stateCopy,
     });
   };
+
   render() {
     let { hasOldData } = this.state;
-    console.log("check state :", this.state);
     return (
       <>
         <div className="manage-doctor-container">

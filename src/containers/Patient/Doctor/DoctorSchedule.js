@@ -50,7 +50,12 @@ class DoctorSchedule extends Component {
   async componentDidMount() {
     let { language } = this.props; // Lấy giá trị language từ Redux store
     let allDays = this.getArrDays(language); // Gọi hàm getArrDays với language
-
+    if (this.props.doctorIdFormParent) {
+      let res = await getScheduleDoctorByDate(this.props.doctorIdFormParent, allDays[0].value);
+      this.setState({
+        allAvalableTime: res.data ? res.data : [], // Cập nhật state với kết quả trả về từ API
+      });
+    }
     this.setState({
       allDays: allDays, // Cập nhật state với mảng allDays
     });
@@ -96,7 +101,6 @@ class DoctorSchedule extends Component {
           allAvalableTime: allTime ? allTime : [], // Cập nhật state với dữ liệu mới
         });
       }
-      console.log("check : ", res); // Log dữ liệu trả về từ API
     }
   };
   handleClickSheduleTime = (time) => {
