@@ -80,19 +80,17 @@
     display: flex;
     flex-direction: column;
     .bg-img {
-      height: 70%;
+      height: 80%;
       width: 80%;
-      // background-size: cover !important;
       border-radius: 15px;
-      
       margin: 0 43px;
       &.section-specialty {
         // background: url("../../assets/images/Specialized/101627-cham-cuu.png") center center/cover
         //   no-repeat;
       }
       &.section-specialty-medicalFacility {
-        background: url("../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg") center
-          center no-repeat;
+        // background: url("../../assets/images/MedicalFacility/083122lo-go-viet-duc.jpg") center
+        //   center no-repeat;
       }
       &.section-specialty-OutstandingDoctor {
         // background: url('../../assets/images/doctor/085824-bs-nhan.png')center center/cover no-repeat;

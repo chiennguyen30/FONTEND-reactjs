@@ -68,6 +68,7 @@ class ManageClinic extends Component {
     }
   };
   render() {
+    console.log("check state : ", this.state);
     return (
       <>
         <div className="manage-specialty-container">

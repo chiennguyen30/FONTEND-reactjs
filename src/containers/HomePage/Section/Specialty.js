@@ -50,7 +50,7 @@ class Specialty extends Component {
                     return (
                       <>
                         <div
-                          className="section-customize"
+                          className="section-customize specialty-child"
                           key={index}
                           onClick={() => this.handleViewDetailSpecialty(item)}
                         >
@@ -58,9 +58,10 @@ class Specialty extends Component {
                             className="bg-img section-specialty"
                             style={{
                               background: `url(${item.image}) center center/cover no-repeat`,
+                              backgroundSize: "contain",
                             }}
                           ></div>
-                          <div style={{ textAlign: "center" }} className="text-all-font-weight">
+                          <div style={{ textAlign: "center" }} className="specialty-name">
                             {item.name}
                           </div>
                         </div>
