@@ -61,7 +61,6 @@ class BookingModal extends Component {
     }
     if (this.props.data !== prevProps.data) {
       if (this.props.data && !_.isEmpty(this.props.data)) {
-        console.log("check data time : ", this.props.data);
         let doctorId = this.props.data.doctorId;
         let timeType = this.props.data.timeType;
         this.setState({
@@ -108,7 +107,6 @@ class BookingModal extends Component {
   };
 
   buildDoctorName = (data) => {
-    console.log(data);
     let { language } = this.props;
     if (data && !_.isEmpty(data)) {
       let name =
@@ -125,12 +123,14 @@ class BookingModal extends Component {
     let date = new Date(this.state.birthday).getTime();
     let timeString = this.buildTimeBooking(this.props.data);
     let doctorName = this.buildDoctorName(this.props.data);
+
     let res = await postPatientBookingAppoinMent({
       fullName: this.state.fullName,
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
-      date: date,
+      date: this.props.data.date,
+      birthday: date,
       doctorId: this.state.doctorId,
       reason: this.state.reason,
       selectedGender: this.state.selectedGender.value,
