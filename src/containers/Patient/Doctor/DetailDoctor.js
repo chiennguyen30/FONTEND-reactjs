@@ -6,6 +6,8 @@ import "./DetailDoctor.scss";
 import { getDetailInforDoctor } from "../../../services/userServices";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
+import Comment from "../../System/socialPlugin/Comment";
+import LikeAndShare from "../../System/socialPlugin/LikeAndShare";
 
 class DetailDoctor extends Component {
   constructor() {
@@ -44,6 +46,11 @@ class DetailDoctor extends Component {
         detailDoctor.firstName + " " + detailDoctor.lastName
       }`;
     }
+    let currentURL =
+      process.env.REACT_APP_IS_LOCALHOST === 1
+        ? "https://restaurant-nvc.onrender.com/"
+        : window.location.href;
+    console.log("check currentURL: ", currentURL);
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -72,6 +79,9 @@ class DetailDoctor extends Component {
                       ? detailDoctor.Doctor_Infor.provinceTypeData.valueVi
                       : detailDoctor.Doctor_Infor.provinceTypeData.valueEn)}
                 </div>
+                <div className="like-share-plugin">
+                  <LikeAndShare dataHref={currentURL} />
+                </div>
               </div>
             </div>
           </div>
@@ -88,7 +98,9 @@ class DetailDoctor extends Component {
               <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}></div>
             )}
           </div>
-          <div className="comment-doctor"></div>
+          <div className="comment-doctor">
+            <Comment dataHref={currentURL} witdh={"100%"} />
+          </div>
         </div>
       </>
     );
