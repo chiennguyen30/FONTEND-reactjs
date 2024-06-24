@@ -45,6 +45,7 @@ class ManageSchedule extends Component {
         result.push(object);
       });
     }
+
     return result;
   };
 
@@ -138,7 +139,6 @@ class ManageSchedule extends Component {
       toast.error(" Error saveBulkDoctorServices!!", {
         position: toast.POSITION.TOP_RIGHT,
       });
-      console.log("check res : ", res);
     }
   };
 
@@ -146,6 +146,7 @@ class ManageSchedule extends Component {
   render() {
     let { listDoctors, rangeTime } = this.state;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+
     return (
       <>
         <div className="manage-schedule-container">

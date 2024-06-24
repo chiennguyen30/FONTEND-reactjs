@@ -58,7 +58,6 @@ class ManagePatient extends Component {
   };
 
   handleBtnConfirm = (item) => {
-    console.log("check data: ", item);
     let data = {
       doctorId: item.doctorId,
       patientId: item.patientId,
@@ -77,11 +76,12 @@ class ManagePatient extends Component {
       dataModal: {},
     });
   };
+
   sendRemedy = async (dataChild) => {
     let { dataModal } = this.state;
-    this.setState({
-      isShowLoading: true,
-    });
+    // this.setState({
+    //   isShowLoading: true,
+    // });
     let res = await postSendRemedy({
       email: dataChild.email,
       imgBase64: dataChild.imgBase64,
@@ -137,12 +137,12 @@ class ManagePatient extends Component {
                       ? dataPatient.map((item, index) => {
                           let time =
                             language === LANGUAGES.VI
-                              ? item.timeTypeDataPatient.valueVi
-                              : item.timeTypeDataPatient.valueEn;
+                              ? item.timeTypeDataPatient.valueVI
+                              : item.timeTypeDataPatient.valueEN;
                           let gender =
                             language === LANGUAGES.VI
-                              ? item.patientData.genderData.valueVi
-                              : item.patientData.genderData.valueEn;
+                              ? item.patientData.genderData.valueVI
+                              : item.patientData.genderData.valueEN;
                           return (
                             <tr key={index}>
                               <td>{index + 1}</td>

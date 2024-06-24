@@ -47,8 +47,8 @@ class ProfileDoctor extends Component {
     if (dataTime && !_.isEmpty(dataTime)) {
       let time =
         dataTime.timeTypeData && language === LANGUAGES.VI
-          ? dataTime.timeTypeData.valueVi
-          : dataTime.timeTypeData.valueEn;
+          ? dataTime.timeTypeData.valueVI
+          : dataTime.timeTypeData.valueEN;
       let date =
         language === LANGUAGES.VI
           ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
@@ -83,10 +83,10 @@ class ProfileDoctor extends Component {
     let nameVi = "";
     let nameEn = "";
     if (dataProfile && dataProfile.positionData) {
-      nameVi = `${dataProfile.positionData.valueVi}, ${
+      nameVi = `${dataProfile.positionData.valueVI}, ${
         dataProfile.lastName + " " + dataProfile.firstName
       }`;
-      nameEn = `${dataProfile.positionData.valueEn}, ${
+      nameEn = `${dataProfile.positionData.valueEN}, ${
         dataProfile.firstName + " " + dataProfile.lastName
       }`;
     }
@@ -117,13 +117,13 @@ class ProfileDoctor extends Component {
                 )}
                 {isShowCity === true && (
                   <div>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>{" "}
                     {dataProfile &&
                       dataProfile.Doctor_Infor &&
                       dataProfile.Doctor_Infor.provinceTypeData &&
                       (language === LANGUAGES.VI
-                        ? dataProfile.Doctor_Infor.provinceTypeData.valueVi
-                        : dataProfile.Doctor_Infor.provinceTypeData.valueEn)}
+                        ? dataProfile.Doctor_Infor.provinceTypeData.valueVI
+                        : dataProfile.Doctor_Infor.provinceTypeData.valueEN)}
                   </div>
                 )}
               </div>
@@ -145,7 +145,7 @@ class ProfileDoctor extends Component {
                   (language === LANGUAGES.VI ? (
                     <NumberFormat
                       className="currency"
-                      value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+                      value={dataProfile.Doctor_Infor.priceTypeData.valueVI}
                       displayType="text"
                       thousandSeparator={true}
                       suffix={" VNĐ"}
@@ -153,7 +153,7 @@ class ProfileDoctor extends Component {
                   ) : language === LANGUAGES.EN ? (
                     <NumberFormat
                       className="currency"
-                      value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+                      value={dataProfile.Doctor_Infor.priceTypeData.valueEN}
                       displayType="text"
                       thousandSeparator={true}
                       suffix={"$"}

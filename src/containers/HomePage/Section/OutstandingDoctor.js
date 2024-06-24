@@ -28,6 +28,7 @@ class OutstandingDoctor extends Component {
   render() {
     const { settings, language } = this.props;
     let { arrDoctors } = this.state;
+
     return (
       <>
         <div className="section-share section-Outstanding-doctor">
@@ -46,12 +47,12 @@ class OutstandingDoctor extends Component {
                 arrDoctors.map((item, index) => {
                   let imageBase64 = [];
                   if (item.image) {
-                    imageBase64 = new Buffer.from(item.image, "base64").toString("binary");
+                    imageBase64 = Buffer.from(item.image, "base64").toString("binary");
                   }
-                  let nameVi = `${item.positionData.valueVi}, ${
+                  let nameVi = `${item.positionData.valueVI}, ${
                     item.lastName + " " + item.firstName
                   }`;
-                  let nameEn = `${item.positionData.valueEn}, ${
+                  let nameEn = `${item.positionData.valueEN}, ${
                     item.firstName + " " + item.lastName
                   }`;
                   return (

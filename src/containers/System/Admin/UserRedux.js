@@ -85,9 +85,7 @@ class UserRedux extends Component {
           previewImage: "",
           action: CRUD_ACTIONS.CREATE,
         },
-        () => {
-          console.log("callback check state: ", this.state);
-        }
+        () => {}
       );
     }
   }
@@ -165,7 +163,7 @@ class UserRedux extends Component {
   handleEditUserFormParent = (user) => {
     let imageBase64 = "";
     if (user.image) {
-      imageBase64 = new Buffer(user.image, "base64").toString("binary");
+      imageBase64 = Buffer(user.image, "base64").toString("binary");
     }
     this.setState({
       email: user.email,

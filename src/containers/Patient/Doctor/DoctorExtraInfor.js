@@ -72,7 +72,7 @@ class DoctorExtraInfor extends Component {
                     (language === LANGUAGES.VI ? (
                       <NumberFormat
                         className="currency"
-                        value={extraInfor.priceTypeData.valueVi}
+                        value={extraInfor.priceTypeData.valueVI}
                         displayType="text"
                         thousandSeparator={true}
                         suffix={"VND"}
@@ -80,7 +80,7 @@ class DoctorExtraInfor extends Component {
                     ) : language === LANGUAGES.EN ? (
                       <NumberFormat
                         className="currency"
-                        value={extraInfor.priceTypeData.valueEn}
+                        value={extraInfor.priceTypeData.valueEN}
                         displayType="text"
                         thousandSeparator={true}
                         suffix={"$"}
@@ -108,7 +108,7 @@ class DoctorExtraInfor extends Component {
                           (language === LANGUAGES.VI ? (
                             <NumberFormat
                               className="currency"
-                              value={extraInfor.priceTypeData.valueVi}
+                              value={extraInfor.priceTypeData.valueVI}
                               displayType="text"
                               thousandSeparator={true}
                               suffix={"VND"}
@@ -116,7 +116,7 @@ class DoctorExtraInfor extends Component {
                           ) : language === LANGUAGES.EN ? (
                             <NumberFormat
                               className="currency"
-                              value={extraInfor.priceTypeData.valueEn}
+                              value={extraInfor.priceTypeData.valueEN}
                               displayType="text"
                               thousandSeparator={true}
                               suffix={"$"}
@@ -131,9 +131,9 @@ class DoctorExtraInfor extends Component {
                   <FormattedMessage id="patient.extra-infor-doctor.payment-methods" /> :
                   {extraInfor && extraInfor.paymentTypeData ? (
                     language === LANGUAGES.VI ? (
-                      extraInfor.paymentTypeData.valueVi
+                      extraInfor.paymentTypeData.valueVI
                     ) : (
-                      extraInfor.paymentTypeData.valueEn
+                      extraInfor.paymentTypeData.valueEN
                     )
                   ) : (
                     <FormattedMessage id="patient.extra-infor-doctor.no-infor" />

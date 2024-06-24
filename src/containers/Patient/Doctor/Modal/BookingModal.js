@@ -91,11 +91,12 @@ class BookingModal extends Component {
 
   buildTimeBooking = (dataTime) => {
     let { language } = this.props;
+    console.log("data time : ", dataTime);
     if (dataTime && !_.isEmpty(dataTime)) {
       let time =
         dataTime.timeTypeData && language === LANGUAGES.VI
-          ? dataTime.timeTypeData.valueVi
-          : dataTime.timeTypeData.valueEn;
+          ? dataTime.timeTypeData.valueVI
+          : dataTime.timeTypeData.valueEN;
       let date =
         language === LANGUAGES.VI
           ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")

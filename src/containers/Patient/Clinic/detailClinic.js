@@ -5,9 +5,8 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
-import { getDetailClinicById, getAllCodeService } from "../../../services/userServices";
+import { getDetailClinicById } from "../../../services/userServices";
 import _ from "lodash";
-import { LANGUAGES } from "../../../utils";
 class detailClinic extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +22,7 @@ class detailClinic extends Component {
       let id = this.props.match.params.id;
 
       let res = await getDetailClinicById({ id });
-      console.log("check res : ", res);
+
       if (res && res.errCode === 0) {
         let data = res.data;
         let arrDoctorId = [];
@@ -50,7 +49,7 @@ class detailClinic extends Component {
 
   render() {
     let { arrDoctorId, dataDetailClinic } = this.state;
-    console.log("dataDetailSpecialty", this.state);
+
     let { language } = this.props;
     return (
       <div className="detail-specialty-container">

@@ -117,6 +117,7 @@ class DoctorSchedule extends Component {
   render() {
     let { allDays, allAvalableTime, isOpenModalBooking, dataSheduleTimeModal } = this.state;
     let { language } = this.props;
+
     return (
       <>
         <div className="doctor-schedule-container">
@@ -148,8 +149,8 @@ class DoctorSchedule extends Component {
                     {allAvalableTime.map((item, index) => {
                       let timeDisplay =
                         language === LANGUAGES.VI
-                          ? item.timeTypeData.valueVi
-                          : item.timeTypeData.valueEn;
+                          ? item.timeTypeData.valueVI
+                          : item.timeTypeData.valueEN;
                       return (
                         <button
                           className={language === LANGUAGES.VI ? "btn-vie" : "btn-en"}

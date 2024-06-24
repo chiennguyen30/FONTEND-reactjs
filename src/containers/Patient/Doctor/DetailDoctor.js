@@ -39,10 +39,10 @@ class DetailDoctor extends Component {
     let nameVi = "";
     let nameEn = "";
     if (detailDoctor && detailDoctor.positionData) {
-      nameVi = `${detailDoctor.positionData.valueVi}, ${
+      nameVi = `${detailDoctor.positionData.valueVI}, ${
         detailDoctor.lastName + " " + detailDoctor.firstName
       }`;
-      nameEn = `${detailDoctor.positionData.valueEn}, ${
+      nameEn = `${detailDoctor.positionData.valueEN}, ${
         detailDoctor.firstName + " " + detailDoctor.lastName
       }`;
     }
@@ -50,7 +50,7 @@ class DetailDoctor extends Component {
       process.env.REACT_APP_IS_LOCALHOST === 1
         ? "https://restaurant-nvc.onrender.com/"
         : window.location.href;
-    console.log("check currentURL: ", currentURL);
+
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -71,13 +71,13 @@ class DetailDoctor extends Component {
                   <span>{detailDoctor.Markdown.description}</span>
                 )}
                 <div>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>{" "}
+                  <i className="fa fa-map-marker" aria-hidden="true"></i>{" "}
                   {detailDoctor &&
                     detailDoctor.Doctor_Infor &&
                     detailDoctor.Doctor_Infor.provinceTypeData &&
                     (language === LANGUAGES.VI
-                      ? detailDoctor.Doctor_Infor.provinceTypeData.valueVi
-                      : detailDoctor.Doctor_Infor.provinceTypeData.valueEn)}
+                      ? detailDoctor.Doctor_Infor.provinceTypeData.valueVI
+                      : detailDoctor.Doctor_Infor.provinceTypeData.valueEN)}
                 </div>
                 <div className="like-share-plugin">
                   <LikeAndShare dataHref={currentURL} />

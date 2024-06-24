@@ -63,7 +63,6 @@ class ManageSpecialty extends Component {
       }
     } else {
       toast.error("Error!!!");
-      console.log("check res : ", res);
     }
     console.log("check state : ", this.state);
   };
